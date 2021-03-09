@@ -6,4 +6,5 @@ dist: trusty
 jdk: openjdk8
 
 script:
+  - chmod +x gradlew
   - ./gradlew build
