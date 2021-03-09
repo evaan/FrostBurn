@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "frostburn",
+  "version": "1.0",
+  "name": "FrostBurn",
+  "description": "A free and open source 1.16 client",
+  "authors": [
+    "Evaan"
+  ],
+  "contact": {
+    "homepage": "https://github.com/evaan/",
+    "sources": "https://github.com/evaan/frostburn"
+  },
+  "license": "GPL-3.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.evaan.frostburn.FrostBurn"
+    ]
+  },
+  "mixins": [
+    "frostburn.mixins.json"
+  ]
+}

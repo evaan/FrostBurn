@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.evaan.frostburn.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "MixinClientConnection",
+    "MixinClientPlayerEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
