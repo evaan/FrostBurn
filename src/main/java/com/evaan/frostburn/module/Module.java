@@ -24,6 +24,7 @@ public class Module {
     public void onEnable() {}
     public void onDisable() {}
     public void onUpdate() {}
+    public void onRender() {}
     public void toggle() {if (enabled) disable(); else enable();}
     public void enable() {enabled = true; Command.sendMessage(name + Formatting.GREEN + " enabled!");}
     public void disable() {enabled = false; Command.sendMessage(name + Formatting.RED + " disabled!");}

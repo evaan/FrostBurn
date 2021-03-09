@@ -2,6 +2,7 @@ package com.evaan.frostburn;
 
 import com.evaan.frostburn.command.CommandManager;
 import com.evaan.frostburn.module.ModuleManager;
+import com.google.common.eventbus.Subscribe;
 import net.fabricmc.api.ModInitializer;
 
 /**

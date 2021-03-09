@@ -1,9 +1,6 @@
 package com.evaan.frostburn.command;
 
-import com.evaan.frostburn.command.commands.BindCommand;
-import com.evaan.frostburn.command.commands.HelpCommand;
-import com.evaan.frostburn.command.commands.ModulesCommand;
-import com.evaan.frostburn.command.commands.ToggleCommand;
+import com.evaan.frostburn.command.commands.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -22,6 +19,7 @@ public class CommandManager {
         commands.add(new HelpCommand());
         commands.add(new ToggleCommand());
         commands.add(new ModulesCommand());
+        commands.add(new FriendCommand());
 
         commands.sort(Comparator.comparing(object -> object.name[0]));
     }

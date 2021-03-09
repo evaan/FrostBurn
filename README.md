@@ -3,6 +3,7 @@ A 1.16.5 client oriented towards anarchy servers
 ## Progress
   - [x] Command System
   - [x] Module System
+  - [x] Friends
   - [ ] Settings
   - [ ] ClickGUI
   - [ ] Render Modules

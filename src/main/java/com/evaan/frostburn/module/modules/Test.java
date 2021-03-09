@@ -14,4 +14,9 @@ public class Test extends Module {
     public void onUpdate() {
         Command.sendMessage("this is a test");
     }
+
+    @Override
+    public void onRender() {
+        System.out.println("gaming");
+    }
 }
