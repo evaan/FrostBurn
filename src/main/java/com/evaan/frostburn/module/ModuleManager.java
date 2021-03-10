@@ -1,6 +1,7 @@
 package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.module.modules.Test;
+import com.evaan.frostburn.module.modules.misc.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,6 +17,8 @@ public class ModuleManager {
         modules = new ArrayList<>();
 
         modules.add(new Test());
+        modules.add(new MiddleClickPearl());
+        modules.add(new MiddleClickFriend());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }

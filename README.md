@@ -23,7 +23,8 @@ A 1.16.5 client oriented towards anarchy servers
     - [ ] Packet Mine
     - [ ] Shulker Peek
     - [ ] Timer
-    - [ ] Middle Click Pearl
-    - [ ] Middle Click Friend
+    - [x] Middle Click Pearl
+    - [x] Middle Click Friend
     - [ ] Step
     - [ ] Reverse Step
+    - [ ] Fake Player

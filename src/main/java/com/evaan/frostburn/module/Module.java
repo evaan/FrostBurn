@@ -3,6 +3,7 @@ package com.evaan.frostburn.module;
 import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.setting.Setting;
 import com.evaan.frostburn.setting.SettingsManager;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Formatting;
 
 /**
@@ -10,6 +11,8 @@ import net.minecraft.util.Formatting;
  * https://github.com/evaan
  */
 public class Module {
+    protected final MinecraftClient mc = MinecraftClient.getInstance();
+    
     public String name;
     public Category category;
     public boolean enabled, drawn;
@@ -36,5 +39,5 @@ public class Module {
     public boolean isEnabled() {return enabled;}
     public boolean isDrawn() {return drawn;}
 
-    public enum Category{COMBAT, MISC, PLAYER, WORLD, EXPLOITS}
+    public enum Category{COMBAT, MISC, RENDER}
 }
