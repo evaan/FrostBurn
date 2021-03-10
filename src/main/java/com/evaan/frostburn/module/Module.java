@@ -1,6 +1,8 @@
 package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.command.Command;
+import com.evaan.frostburn.setting.Setting;
+import com.evaan.frostburn.setting.SettingsManager;
 import net.minecraft.util.Formatting;
 
 /**
@@ -28,6 +30,8 @@ public class Module {
     public void toggle() {if (enabled) disable(); else enable();}
     public void enable() {enabled = true; Command.sendMessage(name + Formatting.GREEN + " enabled!");}
     public void disable() {enabled = false; Command.sendMessage(name + Formatting.RED + " disabled!");}
+
+    public Setting register(Setting setting) { SettingsManager.register(setting); return setting; }
 
     public boolean isEnabled() {return enabled;}
     public boolean isDrawn() {return drawn;}

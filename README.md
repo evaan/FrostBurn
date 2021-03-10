@@ -4,13 +4,13 @@ A 1.16.5 client oriented towards anarchy servers
   - [x] Command System
   - [x] Module System
   - [x] Friends
-  - [ ] Settings
+  - [x] Settings
   - [ ] ClickGUI
   - [ ] Render Modules
     - [ ] HoleESP
     - [ ] Chams
     - [ ] Viewmodel
-    - [ ] Nametag
+    - [ ] Nametags
   - [ ] Combat Modules
     - [ ] Kill Aura
     - [ ] Crystal Aura
