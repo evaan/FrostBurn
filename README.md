@@ -12,7 +12,7 @@ A 1.16.5 client oriented towards anarchy servers
     - [ ] Viewmodel Changer
     - [ ] Nametags
   - [ ] Combat Modules
-    - [ ] Kill Aura
+    - [x] Kill Aura
     - [ ] Crystal Aura
     - [ ] Bed Aura
     - [ ] Auto Anchor
