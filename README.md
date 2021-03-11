@@ -9,7 +9,7 @@ A 1.16.5 client oriented towards anarchy servers
   - [ ] Render Modules
     - [ ] HoleESP
     - [ ] Chams
-    - [ ] Viewmodel
+    - [ ] Viewmodel Changer
     - [ ] Nametags
   - [ ] Combat Modules
     - [ ] Kill Aura
@@ -18,7 +18,9 @@ A 1.16.5 client oriented towards anarchy servers
     - [ ] Auto Anchor
     - [ ] Auto Anvil
     - [ ] Piston Aura
-    - [ ] Burrow
+    - [x] Burrow
+    - [x] Surround
+    - [ ] Velocity
   - [ ] Misc Modules
     - [ ] Packet Mine
     - [ ] Shulker Peek
