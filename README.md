@@ -15,7 +15,7 @@ A 1.16.5 client oriented towards anarchy servers
     - [x] Kill Aura
     - [ ] Crystal Aura
     - [ ] Bed Aura
-    - [ ] Auto Anchor
+    - [x] Auto Anchor
     - [ ] Auto Anvil
     - [ ] Piston Aura
     - [x] Burrow
