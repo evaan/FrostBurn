@@ -40,6 +40,8 @@ public class AutoAnchor extends Module {
 
     @Override
     public void onUpdate() {
+        for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem().equals(Items.RESPAWN_ANCHOR)) {anchorSlot = i;} else if (mc.player.inventory.getStack(i).getItem().equals(Items.GLOWSTONE) && mc.player.inventory.getStack(i).getCount() >= 4) {glowStoneSlot = i;}}
+        if (anchorSlot == -1 || glowStoneSlot == -1) {disable(); return;}
         if (ticks != delay.value) {ticks++; return;}
         else ticks = 0;
         if (mc.player == null || mc.world == null) {disable(); return;}
@@ -55,13 +57,11 @@ public class AutoAnchor extends Module {
         positions.add(new BlockPos(player.getBlockPos().east(2)));
         positions.add(new BlockPos(player.getBlockPos().south(2)));
         positions.add(new BlockPos(player.getBlockPos().west(2)));
-        for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem().equals(Items.RESPAWN_ANCHOR)) {anchorSlot = i;} else if (mc.player.inventory.getStack(i).getItem().equals(Items.GLOWSTONE) && mc.player.inventory.getStack(i).getCount() >= 4) {glowStoneSlot = i;}}
-        if (anchorSlot == -1 || glowStoneSlot == -1) {disable(); return;}
         for (BlockPos blockPos : positions) {
             oldSlot = mc.player.inventory.selectedSlot;
             mc.player.inventory.selectedSlot = anchorSlot;
             if (blockPos.getSquaredDistance(mc.player.getX(), mc.player.getY(), mc.player.getZ(), true) > 6.0f || (mc.world.getBlockState(blockPos).getBlock() != Blocks.RESPAWN_ANCHOR && mc.world.getBlockState(blockPos).getBlock() != Blocks.AIR && mc.world.getBlockState(blockPos).getMaterial().isReplaceable())) continue;
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.AIR) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, false));
+            mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, false));
             mc.player.inventory.selectedSlot = glowStoneSlot;
             if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
             //todo make this on seperate ticks because servers will have a stroke if you dont, actually maybe they wont idk i didnt check

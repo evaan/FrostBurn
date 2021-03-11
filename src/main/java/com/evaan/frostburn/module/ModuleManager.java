@@ -1,10 +1,7 @@
 package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.module.modules.Test;
-import com.evaan.frostburn.module.modules.combat.AutoAnchor;
-import com.evaan.frostburn.module.modules.combat.Burrow;
-import com.evaan.frostburn.module.modules.combat.KillAura;
-import com.evaan.frostburn.module.modules.combat.Surround;
+import com.evaan.frostburn.module.modules.combat.*;
 import com.evaan.frostburn.module.modules.misc.*;
 
 import java.util.ArrayList;
@@ -27,6 +24,7 @@ public class ModuleManager {
         modules.add(new Surround());
         modules.add(new KillAura());
         modules.add(new AutoAnchor());
+        modules.add(new BedAura());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }

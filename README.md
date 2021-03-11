@@ -14,7 +14,7 @@ A 1.16.5 client oriented towards anarchy servers
   - [ ] Combat Modules
     - [x] Kill Aura
     - [ ] Crystal Aura
-    - [ ] Bed Aura
+    - [x] Bed Aura
     - [x] Auto Anchor
     - [ ] Auto Anvil
     - [ ] Piston Aura
