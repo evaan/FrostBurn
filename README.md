@@ -20,7 +20,6 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Piston Aura
     - [x] Burrow
     - [x] Surround
-    - [ ] Velocity
   - [ ] Misc Modules
     - [ ] Packet Mine
     - [ ] Shulker Peek
@@ -30,3 +29,4 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Step
     - [ ] Reverse Step
     - [ ] Fake Player
+    - [ ] Velocity
