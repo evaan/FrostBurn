@@ -1,5 +1,6 @@
 package com.evaan.frostburn.module;
 
+import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.util.Setting;
 import com.evaan.frostburn.util.SettingsManager;
@@ -41,8 +42,8 @@ public class Module {
     public void onUpdate() {}
     public void onRender() {}
     public void toggle() {if (enabled) disable(); else enable();}
-    public void enable() {enabled = true; Command.sendMessage(name + Formatting.GREEN + " enabled!"); onEnable();}
-    public void disable() {enabled = false; Command.sendMessage(name + Formatting.RED + " disabled!"); onDisable();}
+    public void enable() {enabled = true; Command.sendMessage(name + Formatting.GREEN + " enabled!"); FrostBurn.EVENT_BUS.subscribe(this); onEnable();}
+    public void disable() {enabled = false; Command.sendMessage(name + Formatting.RED + " disabled!"); FrostBurn.EVENT_BUS.unsubscribe(this); onDisable();}
 
     public Setting register(Setting setting) { SettingsManager.register(setting); return setting; }
 
