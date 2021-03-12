@@ -1,7 +1,6 @@
 package com.evaan.frostburn.module.modules.misc;
 
-import com.evaan.frostburn.clickgui.ClickGui;
-import com.evaan.frostburn.module.Module;
+ import com.evaan.frostburn.module.Module;
 import net.minecraft.client.util.InputUtil;
 
 /**
