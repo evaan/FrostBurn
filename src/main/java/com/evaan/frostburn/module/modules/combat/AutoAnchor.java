@@ -1,9 +1,8 @@
 package com.evaan.frostburn.module.modules.combat;
 
 import com.evaan.frostburn.module.Module;
-import com.evaan.frostburn.setting.Setting;
+import com.evaan.frostburn.util.Setting;
 import com.google.common.collect.Streams;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,10 +12,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.dimension.DimensionType;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +24,8 @@ import java.util.stream.Collectors;
 public class AutoAnchor extends Module {
     //hey i mean it works.. kind of
     public AutoAnchor() {super("AutoAnchor", Category.COMBAT);}
-
     Setting<Float> range = register(new Setting("Range", this, 4.0f, 0.1f, 5.0f));
+    //todo place and break delay
     Setting<Integer> delay = register(new Setting("Delay", this, 2, 0, 40));
     Setting<Integer> charges = register(new Setting("Charges", this, 2, 1, 4));
 
@@ -40,12 +37,12 @@ public class AutoAnchor extends Module {
 
     @Override
     public void onUpdate() {
-        for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem().equals(Items.RESPAWN_ANCHOR)) {anchorSlot = i;} else if (mc.player.inventory.getStack(i).getItem().equals(Items.GLOWSTONE) && mc.player.inventory.getStack(i).getCount() >= 4) {glowStoneSlot = i;}}
+        for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem().equals(Items.RESPAWN_ANCHOR)) {anchorSlot = i;} else if (mc.player.inventory.getStack(i).getItem().equals(Items.GLOWSTONE) && mc.player.inventory.getStack(i).getCount() >= charges.getValue()) {glowStoneSlot = i;}}
         if (anchorSlot == -1 || glowStoneSlot == -1) {disable(); return;}
-        if (ticks != delay.value) {ticks++; return;}
+        if (ticks != delay.getValue()) {ticks++; return;}
         else ticks = 0;
         if (mc.player == null || mc.world == null) {disable(); return;}
-        List<Entity> players = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.value && e != mc.player).collect(Collectors.toList());
+        List<Entity> players = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList());
         if (players.isEmpty()) return;
         PlayerEntity player = (PlayerEntity)players.get(0);
         ArrayList<BlockPos> positions = new ArrayList<>();
@@ -65,9 +62,9 @@ public class AutoAnchor extends Module {
             mc.player.inventory.selectedSlot = glowStoneSlot;
             if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
             //todo make this on seperate ticks because servers will have a stroke if you dont, actually maybe they wont idk i didnt check
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.value == 2) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.value == 3) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.value == 4) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
+            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.getValue() == 2) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
+            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.getValue() == 3) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
+            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.getValue() == 4) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
             if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.OFF_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
             mc.player.inventory.selectedSlot = oldSlot;
             break;

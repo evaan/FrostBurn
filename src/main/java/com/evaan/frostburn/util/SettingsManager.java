@@ -1,6 +1,7 @@
-package com.evaan.frostburn.setting;
+package com.evaan.frostburn.util;
 
 import com.evaan.frostburn.module.Module;
+import com.evaan.frostburn.util.Setting;
 
 import java.util.ArrayList;
 

@@ -23,7 +23,7 @@ public class BindCommand extends Command {
             sendMessage("Module not found.");
             return;
         }
-        m.bind = InputUtil.fromTranslationKey("key.keyboard." + args[2].toLowerCase().replaceAll("right", "right.").replaceAll("r", "right.")).getCode();
-        sendMessage(m.name + " bound to " + args[2].toUpperCase());
+        m.setBind(InputUtil.fromTranslationKey("key.keyboard." + args[2].toLowerCase().replaceAll("right", "right.").replaceAll("r", "right.")).getCode());
+        sendMessage(m.getName() + " bound to " + args[2].toUpperCase());
     }
 }

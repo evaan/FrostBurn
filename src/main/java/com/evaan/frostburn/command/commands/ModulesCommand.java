@@ -16,8 +16,8 @@ public class ModulesCommand extends Command {
     public void onCommand(String[] args) {
         String message = "Modules (" + ModuleManager.modules.size() + "): ";
         for (Module module : ModuleManager.modules) {
-            if (module.enabled) message += Formatting.GREEN + module.name + Formatting.WHITE + ", ";
-            else message += Formatting.RED + module.name + Formatting.WHITE + ", ";
+            if (module.isEnabled()) message += Formatting.GREEN + module.getName() + Formatting.WHITE + ", ";
+            else message += Formatting.RED + module.getName() + Formatting.WHITE + ", ";
         }
         sendMessage(message.substring(0, message.length()-2));
     }

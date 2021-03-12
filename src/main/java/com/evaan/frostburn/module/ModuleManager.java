@@ -1,11 +1,11 @@
 package com.evaan.frostburn.module;
 
-import com.evaan.frostburn.module.modules.Test;
 import com.evaan.frostburn.module.modules.combat.*;
 import com.evaan.frostburn.module.modules.misc.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * @Author evaan
@@ -17,7 +17,6 @@ public class ModuleManager {
     public static void init() {
         modules = new ArrayList<>();
 
-        modules.add(new Test());
         modules.add(new MiddleClickPearl());
         modules.add(new MiddleClickFriend());
         modules.add(new Burrow());
@@ -25,6 +24,7 @@ public class ModuleManager {
         modules.add(new KillAura());
         modules.add(new AutoAnchor());
         modules.add(new BedAura());
+        modules.add(new ClickGuiMod());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
@@ -35,5 +35,13 @@ public class ModuleManager {
             if (name.equalsIgnoreCase(module.name)) m = module;
         }
         return m;
+    }
+
+    public static ArrayList<Module> getModulesInCategory(Module.Category category) {
+        ArrayList<Module> modules = new ArrayList<>();
+        for (Module module : modules) {
+            if (module.category.equals(category)) modules.add(module);
+        }
+        return modules;
     }
 }

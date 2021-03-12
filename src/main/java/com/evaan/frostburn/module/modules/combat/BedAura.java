@@ -1,16 +1,13 @@
 package com.evaan.frostburn.module.modules.combat;
 
 import com.evaan.frostburn.module.Module;
-import com.evaan.frostburn.setting.Setting;
+import com.evaan.frostburn.util.Setting;
 import com.google.common.collect.Streams;
 import net.minecraft.block.BedBlock;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BedItem;
-import net.minecraft.item.Items;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
-import net.minecraft.network.packet.s2c.play.EntityS2CPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Pair;
 import net.minecraft.util.hit.BlockHitResult;
@@ -26,9 +23,9 @@ import java.util.stream.Collectors;
  * https://github.com/evaan
  */
 public class BedAura extends Module {
-    //hey i mean it works.. kind of
     public BedAura() {super("BedAura", Category.COMBAT);}
-
+    //todo place and break delay also make it so it works in mid air
+    //also auto put back in hotbar
     Setting<Float> range = register(new Setting("Range", this, 4.0f, 0.1f, 5.0f));
     Setting<Integer> delay = register(new Setting("Delay", this, 10, 0, 40));
 
@@ -41,10 +38,10 @@ public class BedAura extends Module {
     public void onUpdate() {
         for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem() instanceof BedItem) {bedSlot = i;}}
         if (bedSlot == -1) {disable(); return;}
-        if (ticks != delay.value) {ticks++; return;}
+        if (ticks != delay.getValue()) {ticks++; return;}
         else ticks = 0;
         if (mc.player == null || mc.world == null) {disable(); return;}
-        List<Entity> players = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.value && e != mc.player).collect(Collectors.toList());
+        List<Entity> players = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList());
         if (players.isEmpty()) return;
         PlayerEntity player = (PlayerEntity)players.get(0);
         ArrayList<Pair<BlockPos, Direction>> positions = new ArrayList<>();

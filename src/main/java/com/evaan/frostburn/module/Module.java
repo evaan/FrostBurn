@@ -1,8 +1,8 @@
 package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.command.Command;
-import com.evaan.frostburn.setting.Setting;
-import com.evaan.frostburn.setting.SettingsManager;
+import com.evaan.frostburn.util.Setting;
+import com.evaan.frostburn.util.SettingsManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Formatting;
 
@@ -13,10 +13,10 @@ import net.minecraft.util.Formatting;
 public class Module {
     protected final MinecraftClient mc = MinecraftClient.getInstance();
     
-    public String name;
-    public Category category;
-    public boolean enabled, drawn;
-    public int bind;
+    String name;
+    Category category;
+    boolean enabled, drawn;
+    int bind;
 
     public Module(String name, Category category) {
         this.name = name;
@@ -25,6 +25,16 @@ public class Module {
         this.drawn = true;
         this.bind = 0;
     }
+
+    public String getName() {return name;}
+    public Category getCategory() {return category;}
+    public boolean isEnabled() {return enabled;}
+    public boolean isDrawn() {return drawn;}
+    public int getBind() {return bind;}
+
+    public void setEnabled(boolean enabled) {if (enabled) enable(); else disable();}
+    public void setDrawn(boolean drawn) {this.drawn = drawn;}
+    public void setBind(int bind) {this.bind = bind;}
 
     public void onEnable() {}
     public void onDisable() {}
@@ -35,9 +45,6 @@ public class Module {
     public void disable() {enabled = false; Command.sendMessage(name + Formatting.RED + " disabled!"); onDisable();}
 
     public Setting register(Setting setting) { SettingsManager.register(setting); return setting; }
-
-    public boolean isEnabled() {return enabled;}
-    public boolean isDrawn() {return drawn;}
 
     public enum Category{COMBAT, MISC, RENDER}
 }

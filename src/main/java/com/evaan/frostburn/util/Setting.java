@@ -1,4 +1,4 @@
-package com.evaan.frostburn.setting;
+package com.evaan.frostburn.util;
 
 import com.evaan.frostburn.module.Module;
 
@@ -9,11 +9,21 @@ import java.util.ArrayList;
  * https://github.com/evaan
  */
 public class Setting<T> {
-    public String name;
-    public Module parent;
-    public T value, min, max;
-    public ArrayList<T> options;
-    public Type type;
+    String name;
+    Module parent;
+    T value, min, max;
+    ArrayList<T> options;
+    Type type;
+
+    public String getName() {return name;}
+    public Module getParent() {return parent;}
+    public T getValue() {return value;}
+    public T getMin() {return min;}
+    public T getMax() {return max;}
+    public ArrayList<T> getOptions() {return options;}
+    public Type getType() {return type;}
+
+    public void setValue(T value) {this.value = value;}
 
     public Setting(String name, Module parent, T value) {
         this.name = name;
