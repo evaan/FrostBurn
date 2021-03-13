@@ -24,7 +24,7 @@ public class Burrow extends Module {
     @Override
     public void onEnable() {
         oldSlot = mc.player.inventory.selectedSlot;
-        this.playerPos = new BlockPos(mc.player.getX(), mc.player.getY(), mc.player.getZ());
+        this.playerPos = mc.player.getBlockPos();
         boolean found = false;
         for (int i = 0; i < 9; i++) {
             if (mc.player.inventory.getStack(i).getItem().equals(Items.OBSIDIAN)) {

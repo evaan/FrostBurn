@@ -22,12 +22,9 @@ import java.util.stream.Collectors;
  * https://github.com/evaan
  */
 public class AutoAnchor extends Module {
-    //hey i mean it works.. kind of
     public AutoAnchor() {super("AutoAnchor", Category.COMBAT);}
     Setting<Float> range = register(new Setting("Range", this, 4.0f, 0.1f, 5.0f));
-    //todo place and break delay
     Setting<Integer> delay = register(new Setting("Delay", this, 2, 0, 40));
-    Setting<Integer> charges = register(new Setting("Charges", this, 2, 1, 4));
 
     int anchorSlot = -1;
     int glowStoneSlot = -1;
@@ -37,37 +34,27 @@ public class AutoAnchor extends Module {
 
     @Override
     public void onUpdate() {
-        for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem().equals(Items.RESPAWN_ANCHOR)) {anchorSlot = i;} else if (mc.player.inventory.getStack(i).getItem().equals(Items.GLOWSTONE) && mc.player.inventory.getStack(i).getCount() >= charges.getValue()) {glowStoneSlot = i;}}
+        if (mc.world == null || mc.player == null) {disable(); return;}
+        for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem().equals(Items.RESPAWN_ANCHOR)) {anchorSlot = i;} else if (mc.player.inventory.getStack(i).getItem().equals(Items.GLOWSTONE)) {glowStoneSlot = i;}}
         if (anchorSlot == -1 || glowStoneSlot == -1) {disable(); return;}
         if (ticks != delay.getValue()) {ticks++; return;}
         else ticks = 0;
-        if (mc.player == null || mc.world == null) {disable(); return;}
-        List<Entity> players = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList());
-        if (players.isEmpty()) return;
-        PlayerEntity player = (PlayerEntity)players.get(0);
-        ArrayList<BlockPos> positions = new ArrayList<>();
-        positions.add(new BlockPos(player.getBlockPos().north()));
-        positions.add(new BlockPos(player.getBlockPos().east()));
-        positions.add(new BlockPos(player.getBlockPos().south()));
-        positions.add(new BlockPos(player.getBlockPos().west()));
-        positions.add(new BlockPos(player.getBlockPos().north(2)));
-        positions.add(new BlockPos(player.getBlockPos().east(2)));
-        positions.add(new BlockPos(player.getBlockPos().south(2)));
-        positions.add(new BlockPos(player.getBlockPos().west(2)));
-        for (BlockPos blockPos : positions) {
-            oldSlot = mc.player.inventory.selectedSlot;
-            mc.player.inventory.selectedSlot = anchorSlot;
-            if (blockPos.getSquaredDistance(mc.player.getX(), mc.player.getY(), mc.player.getZ(), true) > 6.0f || (mc.world.getBlockState(blockPos).getBlock() != Blocks.RESPAWN_ANCHOR && mc.world.getBlockState(blockPos).getBlock() != Blocks.AIR && mc.world.getBlockState(blockPos).getMaterial().isReplaceable())) continue;
-            mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, false));
-            mc.player.inventory.selectedSlot = glowStoneSlot;
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
-            //todo make this on seperate ticks because servers will have a stroke if you dont, actually maybe they wont idk i didnt check
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.getValue() == 2) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.getValue() == 3) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR && charges.getValue() == 4) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
-            if (mc.world.getBlockState(blockPos).getBlock() == Blocks.RESPAWN_ANCHOR) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.OFF_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
-            mc.player.inventory.selectedSlot = oldSlot;
-            break;
-        }
+        try {
+            PlayerEntity player = (PlayerEntity) Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList()).get(0);
+            for (Direction direction : Direction.values()) {
+                BlockPos blockPos = null;
+                if (player.getBlockPos().getSquaredDistance(mc.player.getX(), mc.player.getY(), mc.player.getZ(), true) < 6.0f && !(mc.world.getBlockState(player.getBlockPos()).getBlock() != Blocks.RESPAWN_ANCHOR && mc.world.getBlockState(player.getBlockPos()).getBlock() != Blocks.AIR && mc.world.getBlockState(player.getBlockPos()).getMaterial().isReplaceable())) blockPos = player.getBlockPos();
+                else if (player.getBlockPos().offset(direction).getSquaredDistance(mc.player.getX(), mc.player.getY(), mc.player.getZ(), true) < 6.0f && (mc.world.getBlockState(player.getBlockPos().offset(direction)).getBlock() == Blocks.RESPAWN_ANCHOR || mc.world.getBlockState(player.getBlockPos().offset(direction)).getMaterial().isReplaceable())) blockPos = player.getBlockPos().offset(direction);
+                if (blockPos == null) continue;
+                mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, false));
+                if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.RESPAWN_ANCHOR)) {
+                    mc.player.inventory.selectedSlot = glowStoneSlot;
+                    mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
+                    mc.interactionManager.interactBlock(mc.player, mc.world, Hand.OFF_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
+                }
+                mc.player.inventory.selectedSlot = oldSlot;
+                break;
+            }
+        } catch (Exception ignored) {}
     }
 }

@@ -23,9 +23,8 @@ import java.util.stream.Collectors;
  * https://github.com/evaan
  */
 public class BedAura extends Module {
+    //todo rewrite
     public BedAura() {super("BedAura", Category.COMBAT);}
-    //todo place and break delay also make it so it works in mid air
-    //also auto put back in hotbar
     Setting<Float> range = register(new Setting("Range", this, 4.0f, 0.1f, 5.0f));
     Setting<Integer> delay = register(new Setting("Delay", this, 10, 0, 40));
 
@@ -36,19 +35,20 @@ public class BedAura extends Module {
 
     @Override
     public void onUpdate() {
+        if (mc.world == null || mc.player == null) {disable(); return;}
         for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem() instanceof BedItem) {bedSlot = i;}}
         if (bedSlot == -1) {disable(); return;}
         if (ticks != delay.getValue()) {ticks++; return;}
         else ticks = 0;
         if (mc.player == null || mc.world == null) {disable(); return;}
         List<Entity> players = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList());
-        if (players.isEmpty()) return;
+        if (players.isEmpty()) {return;}
         PlayerEntity player = (PlayerEntity)players.get(0);
         ArrayList<Pair<BlockPos, Direction>> positions = new ArrayList<>();
-        positions.add(new Pair<>(new BlockPos(player.getBlockPos().north().up()), Direction.SOUTH));
-        positions.add(new Pair<>(new BlockPos(player.getBlockPos().east().up()), Direction.WEST));
-        positions.add(new Pair<>(new BlockPos(player.getBlockPos().south().up()), Direction.NORTH));
-        positions.add(new Pair<>(new BlockPos(player.getBlockPos().west().up()), Direction.EAST));
+        positions.add(new Pair<>(player.getBlockPos().north().up(), Direction.SOUTH));
+        positions.add(new Pair<>(player.getBlockPos().east().up(), Direction.WEST));
+        positions.add(new Pair<>(player.getBlockPos().south().up(), Direction.NORTH));
+        positions.add(new Pair<>(player.getBlockPos().west().up(), Direction.EAST));
         positions.sort(Comparator.comparing(object -> object.getLeft().getSquaredDistance(mc.player.getX(), mc.player.getY(), mc.player.getZ(), true)));
         for (Pair<BlockPos, Direction> pair : positions) {
             BlockPos blockPos = pair.getLeft();

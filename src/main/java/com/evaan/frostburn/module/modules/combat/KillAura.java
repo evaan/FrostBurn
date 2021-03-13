@@ -36,8 +36,6 @@ public class KillAura extends Module {
                 mc.interactionManager.attackEntity(mc.player, player);
                 mc.player.swingHand(Hand.MAIN_HAND);
             }
-        } catch (Exception e) {
-            System.out.println("killaura is kil");
-        }
+        } catch (Exception ignored) {}
     }
 }
