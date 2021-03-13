@@ -20,7 +20,6 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Piston Aura
     - [x] Burrow
     - [x] Surround
-    - [ ] Auto Totem
   - [ ] Misc Modules
     - [ ] Packet Mine
     - [ ] Shulker Peek
@@ -31,3 +30,4 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Reverse Step
     - [ ] Fake Player
     - [ ] Velocity
+    - [ ] Auto Totem
