@@ -21,6 +21,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Burrow
     - [x] Surround
     - [x] Auto Totem
+    - [x] Criticals
   - [ ] Misc Modules
     - [ ] Packet Mine
     - [ ] Shulker Peek
@@ -29,6 +30,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Middle Click Friend
     - [ ] Step
     - [ ] Reverse Step
-    - [ ] Fake Player
+    - [x] Fake Player
     - [x] Velocity
-    - [ ] Discord Rich Presence
+    - [x] Sprint
+    - [x] Discord Rich Presence

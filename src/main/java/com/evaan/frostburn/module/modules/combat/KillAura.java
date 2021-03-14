@@ -17,7 +17,7 @@ public class KillAura extends Module {
     public KillAura() {super("KillAura", Category.COMBAT);}
     Setting<Float> range = register(new Setting("Range", this, 4.0f, 0.1f, 6.0f));
     Setting<Boolean> switchItem = register(new Setting("Switch", this, true));
-    //todo rotate and rewrite
+    //todo rotate
 
     @Override
     public void onUpdate() {

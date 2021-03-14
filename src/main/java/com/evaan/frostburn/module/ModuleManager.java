@@ -27,6 +27,10 @@ public class ModuleManager {
         modules.add(new ClickGuiMod());
         modules.add(new AutoTotem());
         modules.add(new Velocity());
+        modules.add(new Sprint());
+        modules.add(new FakePlayer());
+        modules.add(new Criticals());
+        modules.add(new DiscordRPC());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
