@@ -37,7 +37,7 @@ public class Burrow extends Module {
             this.disable();
             return;
         }
-        mc.player.jump();
+        else mc.player.jump();
     }
 
     @Override
