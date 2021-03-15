@@ -5,7 +5,6 @@ import com.evaan.frostburn.module.modules.misc.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * @Author evaan
@@ -25,6 +24,9 @@ public class ModuleManager {
         modules.add(new AutoAnchor());
         modules.add(new BedAura());
         modules.add(new ClickGuiMod());
+        modules.add(new AutoTotem());
+        modules.add(new Velocity());
+        modules.add(new AutoStaircase());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
