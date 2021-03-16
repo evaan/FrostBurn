@@ -26,21 +26,28 @@ public class AutoStaircase extends Module {
     @Override
     public void onUpdate() {
         PlayerEntity player = mc.player;
-        World world = mc.world;
+
+        if (player == null) return;
 
 
         // set vectors for directions
-        // crouch
+        // east
         Vec3d eastCrouch = new Vec3d(player.getX() + 1, player.getY() - 1.80278, player.getZ());
-        // walk
         Vec3d eastWalk = new Vec3d(player.getX() + 1, player.getY() - 2.05913, player.getZ());
+        // north
+        Vec3d northCrouch = new Vec3d(player.getX(), player.getY() - 1.80278, player.getZ() - 1);
+        Vec3d northWalk = new Vec3d(player.getX(), player.getY() - 2.05913, player.getZ() - 1);
+        // west
+        Vec3d westCrouch = new Vec3d(player.getX() - 1, player.getY() - 1.80278, player.getZ());
+        Vec3d westWalk = new Vec3d(player.getX() - 1, player.getY() - 2.05913, player.getZ());
+        // south
+        Vec3d southCrouch = new Vec3d(player.getX(), player.getY() - 1.80278, player.getZ() + 1);
+        Vec3d southWalk = new Vec3d(player.getX(), player.getY() - 2.05913, player.getZ() + 1);
 
         // vector for below player
         Vec3d belowPlayer = new Vec3d(player.getX(), player.getY() - .01, player.getZ());
         BlockPos posBelowPlayer = new BlockPos(belowPlayer);
 
-
-        if (player == null || world == null) return;
 
         try {
             for (int i = 0; i < 9; i++) {
@@ -69,6 +76,129 @@ public class AutoStaircase extends Module {
 
             // jump
             if (-.05 < (xPosToTenth * 10) % 10 && (xPosToTenth * 10) % 10 < .1) {
+                mc.options.keyJump.setPressed(true);
+            }
+
+
+            // add to toWalk as to not walk every time
+            toWalk++;
+
+            // walk
+            if (toWalk == 2) {
+                mc.options.keyForward.setPressed(true);
+                toWalk = 0;
+                mc.options.keySneak.setPressed(true);
+                crouching = true;
+            } else if (toWalk == 1){
+                mc.options.keyForward.setPressed(false);
+                mc.options.keySneak.setPressed(false);
+                crouching = false;
+            } else {
+                mc.options.keyForward.setPressed(false);
+                crouching = false;
+            }
+
+
+            // place blocks
+            mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(belowPlayer, Direction.DOWN, posBelowPlayer, false));
+        }
+
+        if (playerDirection == Direction.NORTH) {
+            float zPosToTenth;
+            if (!crouching) {
+                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, northWalk);
+                zPosToTenth = (((float) (player.getZ() + .1 / 1000000)) * 1000000);
+            } else {
+                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, northCrouch);
+                zPosToTenth = (((float) (player.getZ() / 1000000)) * 1000000);
+            }
+
+
+
+            // jump
+            if (-.05 < (zPosToTenth * 10) % 10 && (zPosToTenth * 10) % 10 < .1) {
+                mc.options.keyJump.setPressed(true);
+            }
+
+
+            // add to toWalk as to not walk every time
+            toWalk++;
+
+            // walk
+            if (toWalk == 2) {
+                mc.options.keyForward.setPressed(true);
+                toWalk = 0;
+                mc.options.keySneak.setPressed(true);
+                crouching = true;
+            } else if (toWalk == 1){
+                mc.options.keyForward.setPressed(false);
+                mc.options.keySneak.setPressed(false);
+                crouching = false;
+            } else {
+                mc.options.keyForward.setPressed(false);
+                crouching = false;
+            }
+
+
+            // place blocks
+            mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(belowPlayer, Direction.DOWN, posBelowPlayer, false));
+        }
+
+        if (playerDirection == Direction.WEST) {
+            float xPosToTenth;
+            if (!crouching) {
+                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, westWalk);
+                xPosToTenth = (((float) (player.getX() + .1 / 1000000)) * 1000000);
+            } else {
+                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, westCrouch);
+                xPosToTenth = (((float) (player.getX() / 1000000)) * 1000000);
+            }
+
+
+
+            // jump
+            if (-.05 < (xPosToTenth * 10) % 10 && (xPosToTenth * 10) % 10 < .1) {
+                mc.options.keyJump.setPressed(true);
+            }
+
+
+            // add to toWalk as to not walk every time
+            toWalk++;
+
+            // walk
+            if (toWalk == 2) {
+                mc.options.keyForward.setPressed(true);
+                toWalk = 0;
+                mc.options.keySneak.setPressed(true);
+                crouching = true;
+            } else if (toWalk == 1){
+                mc.options.keyForward.setPressed(false);
+                mc.options.keySneak.setPressed(false);
+                crouching = false;
+            } else {
+                mc.options.keyForward.setPressed(false);
+                crouching = false;
+            }
+
+
+            // place blocks
+            mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(belowPlayer, Direction.DOWN, posBelowPlayer, false));
+        }
+
+        if (playerDirection == Direction.SOUTH) {
+            float zPosToTenth;
+            if (!crouching) {
+                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, southWalk);
+                zPosToTenth = (((float) (player.getZ() - .1 / 1000000)) * 1000000);
+            } else {
+                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, southCrouch);
+                zPosToTenth = (((float) (player.getZ() / 1000000)) * 1000000);
+            }
+
+
+
+            // jump
+            if (-.05 < (zPosToTenth * 10) % 10 && (zPosToTenth * 10) % 10 < .1) {
                 mc.options.keyJump.setPressed(true);
             }
 
