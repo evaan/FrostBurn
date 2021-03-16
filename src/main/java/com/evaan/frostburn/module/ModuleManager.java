@@ -5,7 +5,6 @@ import com.evaan.frostburn.module.modules.misc.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * @Author evaan
@@ -31,6 +30,7 @@ public class ModuleManager {
         modules.add(new FakePlayer());
         modules.add(new Criticals());
         modules.add(new DiscordRPC());
+        modules.add(new AutoStaircase());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
