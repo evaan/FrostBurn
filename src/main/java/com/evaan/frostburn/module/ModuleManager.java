@@ -2,6 +2,7 @@ package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.module.modules.combat.*;
 import com.evaan.frostburn.module.modules.misc.*;
+import com.evaan.frostburn.module.modules.render.Fullbright;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -31,6 +32,7 @@ public class ModuleManager {
         modules.add(new Criticals());
         modules.add(new DiscordRPC());
         modules.add(new AutoStaircase());
+        modules.add(new Fullbright());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
