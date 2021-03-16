@@ -9,7 +9,8 @@
     "MixinClientConnection",
     "MixinClientPlayerEntity",
     "MixinGameRenderer",
-    "MixinKeyboard"
+    "MixinKeyboard",
+    "MixinMinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1
