@@ -33,6 +33,7 @@ public class ModuleManager {
         modules.add(new DiscordRPC());
         modules.add(new AutoStaircase());
         modules.add(new Fullbright());
+        modules.add(new Scaffold());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }

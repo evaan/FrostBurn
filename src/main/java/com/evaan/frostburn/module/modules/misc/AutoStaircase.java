@@ -19,81 +19,35 @@ import net.minecraft.world.World;
 public class AutoStaircase extends Module {
     public AutoStaircase() {super("AutoStaircase", Category.MISC);}
 
-    int toWalk = 0;
-
-    Boolean crouching = true;
+    boolean jumping = false;
 
     @Override
     public void onUpdate() {
-        PlayerEntity player = mc.player;
-        World world = mc.world;
-
-
-        // set vectors for directions
-        // crouch
-        Vec3d eastCrouch = new Vec3d(player.getX() + 1, player.getY() - 1.80278, player.getZ());
-        // walk
-        Vec3d eastWalk = new Vec3d(player.getX() + 1, player.getY() - 2.05913, player.getZ());
-
-        // vector for below player
-        Vec3d belowPlayer = new Vec3d(player.getX(), player.getY() - .01, player.getZ());
-        BlockPos posBelowPlayer = new BlockPos(belowPlayer);
-
-
-        if (player == null || world == null) return;
-
-        try {
-            for (int i = 0; i < 9; i++) {
-                if (player.inventory.getStack(i).getItem() instanceof BlockItem) {
-                    player.inventory.selectedSlot = i;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("no blocks");
+        if (mc.player == null || mc.world == null) {disable(); return;}
+        switch(mc.player.getMovementDirection()) {
+            case NORTH:
+                //set north
+                break;
+            case EAST:
+                //set east
+                break;
+            case SOUTH:
+                //set south
+                break;
+            case WEST:
+                //set west
+                break;
         }
-
-        Direction playerDirection = player.getHorizontalFacing();
-        
-
-        if (playerDirection == Direction.EAST) {
-            float xPosToTenth;
-            if (!crouching) {
-                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, eastWalk);
-                xPosToTenth = (((float) (player.getX() - .1 / 1000000)) * 1000000);
-            } else {
-                player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, eastCrouch);
-                xPosToTenth = (((float) (player.getX() / 1000000)) * 1000000);
-            }
-
-
-
-            // jump
-            if (-.05 < (xPosToTenth * 10) % 10 && (xPosToTenth * 10) % 10 < .1) {
-                mc.options.keyJump.setPressed(true);
-            }
-
-
-            // add to toWalk as to not walk every time
-            toWalk++;
-
-            // walk
-            if (toWalk == 2) {
-                mc.options.keyForward.setPressed(true);
-                toWalk = 0;
-                mc.options.keySneak.setPressed(true);
-                crouching = true;
-            } else if (toWalk == 1){
-                mc.options.keyForward.setPressed(false);
-                mc.options.keySneak.setPressed(false);
-                crouching = false;
-            } else {
-                mc.options.keyForward.setPressed(false);
-                crouching = false;
-            }
-
-
-            // place blocks
-            mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(belowPlayer, Direction.DOWN, posBelowPlayer, false));
+        if (!mc.player.isOnGround()) return;
+        BlockPos pos = mc.player.getBlockPos().offset(mc.player.getMovementDirection());
+        if (mc.world.getBlockState(pos).getMaterial().isReplaceable()) {
+            mc.options.keyForward.setPressed(false);
+            mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(pos), Direction.DOWN, pos, false));
+            mc.player.swingHand(Hand.MAIN_HAND);
+        }
+        if (!mc.world.getBlockState(pos).getMaterial().isReplaceable()) {
+            mc.options.keyForward.setPressed(true);
+            mc.player.jump();
         }
     }
 }

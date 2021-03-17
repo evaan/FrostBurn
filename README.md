@@ -11,6 +11,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Chams
     - [ ] Viewmodel Changer
     - [ ] Nametags
+    - [x] Fullbright
   - [ ] Combat Modules
     - [x] Kill Aura
     - [ ] Crystal Aura
@@ -34,3 +35,5 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Velocity
     - [x] Sprint
     - [x] Discord Rich Presence
+    - [x] Scaffold
+    - [x] Auto Staircase

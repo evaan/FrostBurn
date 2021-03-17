@@ -7,12 +7,16 @@ import net.minecraft.world.World;
 public class Fullbright extends Module {
     public Fullbright() {super("Fullbright", Category.RENDER);}
 
+    double oldGamma;
+
     @Override
-    public void onUpdate() {
-
-        PlayerEntity player = mc.player;
-        World world = mc.world;
-
+    public void onEnable() {
+        oldGamma = mc.options.gamma;
         mc.options.gamma = 100;
+    }
+
+    @Override
+    public void onDisable() {
+        mc.options.gamma = oldGamma;
     }
 }
