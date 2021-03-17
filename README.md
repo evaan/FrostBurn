@@ -37,3 +37,5 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Discord Rich Presence
     - [x] Scaffold
     - [x] Auto Staircase
+    - [ ] Yawlock
+    - [ ] AntiAim

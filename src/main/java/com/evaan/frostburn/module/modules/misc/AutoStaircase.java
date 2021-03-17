@@ -4,6 +4,7 @@ import com.evaan.frostburn.module.Module;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -24,22 +25,22 @@ public class AutoStaircase extends Module {
     @Override
     public void onUpdate() {
         if (mc.player == null || mc.world == null) {disable(); return;}
-        switch(mc.player.getMovementDirection()) {
-            case NORTH:
-                //set north
-                break;
-            case EAST:
-                //set east
-                break;
-            case SOUTH:
-                //set south
-                break;
-            case WEST:
-                //set west
-                break;
-        }
         if (!mc.player.isOnGround()) return;
         BlockPos pos = mc.player.getBlockPos().offset(mc.player.getMovementDirection());
+        switch (mc.player.getMovementDirection()) {
+            case NORTH:
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX(), mc.player.getY(), mc.player.getZ() - 1));
+                break;
+            case EAST:
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX() + 1, mc.player.getY(), mc.player.getZ()));
+                break;
+            case SOUTH:
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX(), mc.player.getY(), mc.player.getZ() + 1));
+                break;
+            case WEST:
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX() - 1, mc.player.getY(), mc.player.getZ()));
+                break;
+        }
         if (mc.world.getBlockState(pos).getMaterial().isReplaceable()) {
             mc.options.keyForward.setPressed(false);
             mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(pos), Direction.DOWN, pos, false));
