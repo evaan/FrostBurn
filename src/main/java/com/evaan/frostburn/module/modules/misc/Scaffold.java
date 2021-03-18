@@ -1,6 +1,7 @@
 package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
+import net.minecraft.item.BlockItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -16,6 +17,10 @@ public class Scaffold extends Module {
 
     @Override
     public void onUpdate() {
+        for (int i = 0; i < 9; i++) {
+            if (mc.player.inventory.getStack(i).getItem() instanceof BlockItem)
+                mc.player.inventory.selectedSlot = i;
+        }
         if (mc.player == null || mc.world == null) {disable(); return;}
         BlockPos pos = mc.player.getBlockPos().down();
         if (mc.world.getBlockState(pos).getMaterial().isReplaceable()) {
