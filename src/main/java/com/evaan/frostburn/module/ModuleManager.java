@@ -36,6 +36,7 @@ public class ModuleManager {
         modules.add(new Fullbright());
         modules.add(new Scaffold());
         modules.add(new Step());
+        modules.add(new AntiAim());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
