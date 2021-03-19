@@ -2,7 +2,8 @@ package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.module.modules.combat.*;
 import com.evaan.frostburn.module.modules.misc.*;
-import com.evaan.frostburn.module.modules.render.Fullbright;
+import com.evaan.frostburn.module.modules.render.*;
+import com.evaan.frostburn.module.modules.movement.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -34,6 +35,7 @@ public class ModuleManager {
         modules.add(new AutoStaircase());
         modules.add(new Fullbright());
         modules.add(new Scaffold());
+        modules.add(new Step());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
