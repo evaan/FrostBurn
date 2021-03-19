@@ -29,7 +29,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Timer
     - [x] Middle Click Pearl
     - [x] Middle Click Friend
-    - [ ] Step
+    - [x] Step
     - [ ] Reverse Step
     - [x] Fake Player
     - [x] Velocity
