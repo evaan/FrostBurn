@@ -1,14 +1,13 @@
-package com.evaan.frostburn.module.modules.misc;
+package com.evaan.frostburn.module.modules.movement;
 
 import com.evaan.frostburn.module.Module;
-import com.evaan.frostburn.util.Setting;
 
 /**
  * @Author evaan
  * https://github.com/evaan
  */
 public class Sprint extends Module {
-    public Sprint() {super("Sprint", Category.MISC);}
+    public Sprint() {super("Sprint", Category.MOVEMENT);}
 
     @Override
     public void onUpdate() {

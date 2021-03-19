@@ -1,7 +1,6 @@
 package com.evaan.frostburn.module.modules.movement;
 
 import com.evaan.frostburn.module.Module;
-import net.minecraft.client.MinecraftClient;
 
 /**
  * @Author majorsopa

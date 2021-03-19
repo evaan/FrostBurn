@@ -2,10 +2,6 @@ package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.util.DiscordUtil;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.client.network.OtherClientPlayerEntity;
-
-import java.util.UUID;
 
 /**
  * @Author evaan
