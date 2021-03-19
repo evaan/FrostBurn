@@ -47,5 +47,5 @@ public class Module {
 
     public Setting register(Setting setting) { SettingsManager.register(setting); return setting; }
 
-    public enum Category{COMBAT, MISC, RENDER}
+    public enum Category{COMBAT, MISC, RENDER, MOVEMENT}
 }
