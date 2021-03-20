@@ -19,6 +19,7 @@ public class ModuleManager {
         modules = new ArrayList<>();
 
         modules.add(new AirPlace());
+        modules.add(new MiddleClickPearl());
         modules.add(new MiddleClickFriend());
         modules.add(new Burrow());
         modules.add(new Surround());
