@@ -40,3 +40,5 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Yawlock
     - [ ] AntiAim
     - [ ] AutoTool
+    - [x] BoatFly
+    - [x] Jesus
