@@ -1,7 +1,6 @@
 package com.evaan.frostburn.command.commands;
 
 import com.evaan.frostburn.command.Command;
-import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.command.CommandManager;
 import org.apache.commons.lang3.StringUtils;
 

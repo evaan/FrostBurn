@@ -1,7 +1,7 @@
 package com.evaan.frostburn.mixins;
 
-import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.FrostBurn;
+import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.command.CommandManager;
 import com.evaan.frostburn.event.events.PacketEvent;
 import io.netty.channel.ChannelHandlerContext;

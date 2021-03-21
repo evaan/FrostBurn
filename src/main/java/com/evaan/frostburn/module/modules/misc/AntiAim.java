@@ -1,7 +1,6 @@
 package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 /**
  * @Author evaan

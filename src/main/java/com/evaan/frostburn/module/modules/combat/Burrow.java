@@ -1,12 +1,10 @@
 package com.evaan.frostburn.module.modules.combat;
 
-import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.module.Module;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;

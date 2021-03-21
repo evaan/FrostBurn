@@ -1,7 +1,6 @@
 package com.evaan.frostburn.module.modules.combat;
 
 import com.evaan.frostburn.module.Module;
-import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 

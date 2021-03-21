@@ -1,6 +1,5 @@
 package com.evaan.frostburn.mixins;
 
-import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import net.minecraft.client.network.ClientPlayerEntity;

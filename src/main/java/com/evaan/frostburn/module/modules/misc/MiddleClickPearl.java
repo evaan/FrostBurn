@@ -1,10 +1,7 @@
 package com.evaan.frostburn.module.modules.misc;
 
-import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.module.Module;
-import net.minecraft.client.render.debug.DebugRenderer;
 import net.minecraft.item.Items;
-import net.minecraft.network.packet.c2s.play.PlayerInteractItemC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.HitResult;
 import org.lwjgl.glfw.GLFW;

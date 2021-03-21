@@ -2,15 +2,11 @@ package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 
 /**
