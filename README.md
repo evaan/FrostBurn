@@ -14,7 +14,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Fullbright
   - [ ] Combat Modules
     - [x] Kill Aura
-    - [ ] Crystal Aura
+    - [x] Crystal Aura
     - [x] Bed Aura
     - [x] Auto Anchor
     - [ ] Auto Anvil
