@@ -17,6 +17,8 @@ public class Scaffold extends Module {
 
     @Override
     public void onUpdate() {
+    	int original_slot = mc.player.inventory.selectedSlot;
+    	
         for (int i = 0; i < 9; i++) {
             if (mc.player.inventory.getStack(i).getItem() instanceof BlockItem)
                 mc.player.inventory.selectedSlot = i;
@@ -27,5 +29,7 @@ public class Scaffold extends Module {
             mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(pos), Direction.DOWN, pos, false));
             mc.player.swingHand(Hand.MAIN_HAND);
         }
+        
+        mc.player.inventory.selectedSlot = original_slot;
     }
 }
