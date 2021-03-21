@@ -7,6 +7,8 @@ import com.evaan.frostburn.module.modules.movement.Step;
 import com.evaan.frostburn.module.modules.render.Fullbright;
 import com.evaan.frostburn.module.modules.render.Zoom;
 
+import net.minecraft.client.MinecraftClient;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -41,6 +43,7 @@ public class ModuleManager {
         modules.add(new Step());
         modules.add(new AntiAim());
         modules.add(new Zoom());
+        modules.add(new BoatFly());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
