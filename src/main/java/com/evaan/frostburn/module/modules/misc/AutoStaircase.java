@@ -36,6 +36,8 @@ public class AutoStaircase extends Module {
             case WEST:
                 mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX() - 1, mc.player.getY(), mc.player.getZ()));
                 break;
+            default:
+            	break;
         }
         if (mc.world.getBlockState(pos).getMaterial().isReplaceable()) {
             mc.options.keyForward.setPressed(false);

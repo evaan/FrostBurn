@@ -41,6 +41,9 @@ public class ModuleManager {
         modules.add(new Step());
         modules.add(new AntiAim());
         modules.add(new Zoom());
+        modules.add(new BoatFly());
+        modules.add(new Jesus());
+        modules.add(new CrystalAura());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }

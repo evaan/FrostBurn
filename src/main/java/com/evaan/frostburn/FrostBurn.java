@@ -6,12 +6,14 @@ import com.evaan.frostburn.util.SettingsManager;
 import me.zero.alpine.EventBus;
 import me.zero.alpine.EventManager;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.MinecraftClient;
 
 /**
  * @Author evaan
  * https://github.com/evaan
  */
 public class FrostBurn implements ModInitializer {
+	public static MinecraftClient mc = MinecraftClient.getInstance();
 	public static EventBus EVENT_BUS;
 
 	@Override
