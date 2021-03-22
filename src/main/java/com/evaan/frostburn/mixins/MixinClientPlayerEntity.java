@@ -2,7 +2,10 @@ package com.evaan.frostburn.mixins;
 
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
+import com.evaan.frostburn.settings.ConfigManager;
+
 import net.minecraft.client.network.ClientPlayerEntity;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,4 +21,11 @@ public class MixinClientPlayerEntity {
     public void tick(CallbackInfo info) {
         ModuleManager.modules.stream().filter(Module::isEnabled).forEach(Module::onUpdate);
     }
+ 
+    @Inject(method = "<init>", at = @At(value = "RETURN"))
+    public void initInject(CallbackInfo info) {
+    	// Load config
+    	ConfigManager.loadConfig("default");
+    }
+    
 }
