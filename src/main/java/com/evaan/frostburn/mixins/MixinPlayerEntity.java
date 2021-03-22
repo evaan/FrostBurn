@@ -23,6 +23,7 @@ public class MixinPlayerEntity {
     @Inject(method = "tickMovement()V", at = @At("TAIL"), cancellable = true)
     private void tickMovement(CallbackInfo cir) {
         ClientPlayerEntity player = FrostBurn.mc.player;
+        if(player == null) return;
 
         if(ModuleManager.getModule("NoFall").isEnabled()) {
             PlayerMoveC2SPacket packet = new PlayerMoveC2SPacket(true);
