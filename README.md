@@ -7,28 +7,37 @@ A 1.16.5 utility mod oriented towards anarchy servers
   - [x] Settings
   - [ ] ClickGUI
   - [ ] Render Modules
-    - [ ] HoleESP
     - [ ] Chams
-    - [ ] Viewmodel Changer
-    - [ ] Nametags
     - [x] Fullbright
-    - [x] Zoom
-    - [x] NoWeather
+    - [ ] HoleESP
+    - [ ] Nametags
     - [x] NoParticle
+    - [x] NoWeather
+    - [ ] ViewmodelChanger
+    - [x] Zoom
   - [ ] Combat Modules
-    - [x] Kill Aura
-    - [x] Crystal Aura
-    - [x] Bed Aura
-    - [x] Auto Anchor
-    - [ ] Auto Anvil
-    - [ ] Piston Aura
+    - [x] AutoAnchor
+    - [ ] AutoAnvil
+    - [x] AutoTotem
+    - [x] BedAura
     - [x] Burrow
+    - [x] Criticals 
+    - [x] CrystalAura (Missing Place)
+    - [x] KillAura
+    - [ ] PistonAura
     - [x] Surround
-    - [x] Auto Totem
-    - [x] Criticals
   - [ ] Misc Modules
-    - [ ] Packet Mine
-    - [ ] Shulker Peek
+    - [ ] AirPlace
+    - [ ] AntiAim
+    - [x] AutoStaircase
+    - [ ] AutoTool
+    - [x] DiscordRPC
+    - [x] FakePlayer
+    - [x] MiddleClickFriend
+    - [x] MiddleClickPearl
+    - [ ] PacketMine
+    - [x] Scaffold
+    - [ ] ShulkerPeek
     - [ ] Timer
     - [x] Middle Click Pearl
     - [x] Middle Click Friend
@@ -37,15 +46,11 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Scaffold
     - [x] Auto Staircase
     - [ ] Yawlock
-    - [ ] AntiAim
-    - [ ] AutoTool
   - [ ] Movement Modules
     - [x] BoatFly
-    - [x] Jesus
-    - [x] Step
-    - [ ] Reverse Step
-    - [x] Velocity
-    - [x] Sprint
-    - [x] NoFall
-    - [x] SafeWalk
     - [x] Fly
+    - [x] Jesus
+    - [ ] ReverseStep
+    - [x] Sprint
+    - [x] Step
+    - [x] Velocity
