@@ -21,7 +21,7 @@ public class MixinMinecraftClient {
 
     @Inject(method = "getWindowTitle", at = @At("HEAD"), cancellable = true)
     public void getWindowTitle(CallbackInfoReturnable<String> ci){
-        ci.setReturnValue("FrostBurn 1.0");
+        ci.setReturnValue(FrostBurn.clientVersionString);
     }
 
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/util/Window;setIcon(Ljava/io/InputStream;Ljava/io/InputStream;)V"))

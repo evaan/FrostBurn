@@ -1,5 +1,6 @@
 package com.evaan.frostburn.module.modules.misc;
 
+import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.module.Module;
 import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRichPresence;
@@ -13,8 +14,9 @@ public class DiscordRPC extends Module {
 
     @Override
     public void onEnable() {
+        String clientVersion = FrostBurn.clientVersionString;
         net.arikia.dev.drpc.DiscordRPC.discordInitialize("820481496962826291", new DiscordEventHandlers.Builder().setReadyEventHandler(user -> {}).build(), true);
-        net.arikia.dev.drpc.DiscordRPC.discordUpdatePresence(new DiscordRichPresence.Builder(getIP()).setBigImage("logo", "FrostBurn 1.0").build());
+        net.arikia.dev.drpc.DiscordRPC.discordUpdatePresence(new DiscordRichPresence.Builder(getIP()).setBigImage("logo", clientVersion).build());
     }
 
     @Override
@@ -24,7 +26,8 @@ public class DiscordRPC extends Module {
 
     @Override
     public void onUpdate() {
-        net.arikia.dev.drpc.DiscordRPC.discordUpdatePresence(new DiscordRichPresence.Builder(getIP()).setBigImage("logo", "FrostBurn 1.0").build());
+        String clientVersion = FrostBurn.clientVersionString;
+        net.arikia.dev.drpc.DiscordRPC.discordUpdatePresence(new DiscordRichPresence.Builder(getIP()).setBigImage("logo", clientVersion).build());
     }
 
     public String getIP() {

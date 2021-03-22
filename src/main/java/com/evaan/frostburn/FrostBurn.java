@@ -15,6 +15,7 @@ import net.minecraft.client.MinecraftClient;
 public class FrostBurn implements ModInitializer {
 	public static MinecraftClient mc = MinecraftClient.getInstance();
 	public static EventBus EVENT_BUS;
+	public static String clientVersionString = "Frostburn 1.0";
 
 	@Override
 	public void onInitialize() {

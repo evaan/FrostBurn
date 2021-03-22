@@ -11,6 +11,8 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Fullbright
     - [ ] HoleESP
     - [ ] Nametags
+    - [x] NoParticle
+    - [x] NoWeather
     - [ ] ViewmodelChanger
     - [x] Zoom
   - [ ] Combat Modules
@@ -37,11 +39,18 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Scaffold
     - [ ] ShulkerPeek
     - [ ] Timer
+    - [x] Middle Click Pearl
+    - [x] Middle Click Friend
+    - [x] Fake Player
+    - [x] Discord Rich Presence
+    - [x] Scaffold
+    - [x] Auto Staircase
     - [ ] Yawlock
   - [ ] Movement Modules
-    - [x] Step
+    - [x] BoatFly
+    - [x] Fly
+    - [x] Jesus
     - [ ] ReverseStep
     - [x] Sprint
+    - [x] Step
     - [x] Velocity
-    - [x] BoatFly
-    - [x] Jesus
