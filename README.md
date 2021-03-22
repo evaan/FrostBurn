@@ -41,7 +41,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Yawlock
     - [ ] AntiAim
     - [ ] AutoTool
-  - [ ] Movement Modules
+  - [x] Movement Modules
     - [x] BoatFly
     - [x] Jesus
     - [x] Step
