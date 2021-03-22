@@ -14,6 +14,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Fullbright
     - [x] Zoom
     - [x] NoWeather
+    - [x] NoParticle
   - [ ] Combat Modules
     - [x] Kill Aura
     - [x] Crystal Aura

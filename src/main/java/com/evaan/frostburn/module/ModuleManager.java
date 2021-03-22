@@ -43,6 +43,7 @@ public class ModuleManager {
         modules.add(new Jesus());
         modules.add(new CrystalAura());
         modules.add(new NoWeather());
+        modules.add(new NoParticle());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
