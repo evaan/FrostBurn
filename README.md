@@ -38,7 +38,8 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Scaffold
     - [x] Auto Staircase
     - [ ] Yawlock
-    - [ ] AntiAim
+    - [x] AntiAim
+    - [x] Airplace
     - [ ] AutoTool
     - [x] BoatFly
     - [x] Jesus
