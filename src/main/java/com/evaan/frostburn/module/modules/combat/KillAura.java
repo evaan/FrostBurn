@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +23,7 @@ public class KillAura extends Module {
     Setting<Float> range = register(new Setting("Range", this, 4.0f, 0.1f, 6.0f));
     Setting<Boolean> switchItem = register(new Setting("Switch", this, true));
     Setting<Boolean> allEntities = register(new Setting("AllEntities", this, true));
+    Setting<Boolean> multiAura = register(new Setting("Multi", this, true));
     
     //todo rotate
 
@@ -31,29 +33,31 @@ public class KillAura extends Module {
         if(mc.player.getAttackCooldownProgress(0) < 1) return;
         
         try {
-	    	Entity entity;
+	    	List<Entity> filtered;
 	    	if(!allEntities.getValue()) {
-	            entity = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList()).get(0);
+	    		filtered = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof PlayerEntity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList());
 	    	} else {
-	    		entity = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof Entity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList()).get(0);
+	    		filtered = Streams.stream(mc.world.getEntities()).filter(e -> e instanceof Entity && mc.player.distanceTo(e) <= range.getValue() && e != mc.player).collect(Collectors.toList());
 	    	}
-	        	
-    		if(entity != null) {
-    			if(!entity.isAttackable()) return;
-    			
-    			// We have a separate CrystalAura module
-    			if(entity.getClass() == EndCrystalEntity.class) return;
-    			
-                if (switchItem.getValue()) {
-                    for (int i = 0; i < 9; i++) {
-                        if (mc.player.inventory.getStack(i).getItem() instanceof SwordItem)
-                            mc.player.inventory.selectedSlot = i;
-                    }
-                }
-                
-                mc.interactionManager.attackEntity(mc.player, entity);
-                mc.player.swingHand(Hand.MAIN_HAND);
-            }
+	        
+	    	for(Entity entity : filtered) {
+	    		if(entity != null) {
+	    			// Don't attack dead/non living entities, ones we can't attack, and end crystals
+	    			if(entity.isLiving() && entity.isAttackable() && !(entity.getClass() == EndCrystalEntity.class)) {
+		                if (switchItem.getValue()) {
+		                    for (int i = 0; i < 9; i++) {
+		                        if (mc.player.inventory.getStack(i).getItem() instanceof SwordItem)
+		                            mc.player.inventory.selectedSlot = i;
+		                    }
+		                }
+		                
+		                mc.interactionManager.attackEntity(mc.player, entity);
+		                mc.player.swingHand(Hand.MAIN_HAND);
+		                
+		                if(!multiAura.getValue()) break;
+ 	    			}
+	            }
+	    	}
         	
         } catch (Exception ignored) {}
     }

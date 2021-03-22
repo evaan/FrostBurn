@@ -34,7 +34,6 @@ public abstract class MixinFluidBlock extends Block implements FluidDrainable {
 			underwater = player.isSubmergedInWater();
 			riding = player.isRiding();
 		} catch (Exception e) {
-			e.printStackTrace();
 			return super.getCollisionShape(state, world, pos, context);
 		}
 		

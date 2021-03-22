@@ -2,10 +2,8 @@ package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.module.modules.combat.*;
 import com.evaan.frostburn.module.modules.misc.*;
-import com.evaan.frostburn.module.modules.movement.Sprint;
-import com.evaan.frostburn.module.modules.movement.Step;
-import com.evaan.frostburn.module.modules.render.Fullbright;
-import com.evaan.frostburn.module.modules.render.Zoom;
+import com.evaan.frostburn.module.modules.movement.*;
+import com.evaan.frostburn.module.modules.render.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -57,10 +55,18 @@ public class ModuleManager {
     }
 
     public static ArrayList<Module> getModulesInCategory(Module.Category category) {
-        ArrayList<Module> modules = new ArrayList<>();
+        ArrayList<Module> cat = new ArrayList<>();
         for (Module module : modules) {
-            if (module.category.equals(category)) modules.add(module);
+            if (module.category.equals(category)) cat.add(module);
         }
-        return modules;
+        return cat;
+    }
+    
+    public static ArrayList<String> getModuleNames() {
+    	ArrayList<String> names = new ArrayList<>();
+    	for (Module module : modules) {
+            names.add(module.getName());
+        }
+    	return names;
     }
 }

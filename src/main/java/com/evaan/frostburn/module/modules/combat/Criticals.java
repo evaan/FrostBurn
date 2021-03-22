@@ -15,7 +15,7 @@ public class Criticals extends Module {
     public Criticals() {super("Criticals", Category.COMBAT);}
 
     @EventHandler
-    private Listener<PacketEvent.Send> packetListener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetListener = new Listener<>(event -> {
         if (event.getPacket() instanceof PlayerInteractEntityC2SPacket) {
             if(((PlayerInteractEntityC2SPacket) event.getPacket()).getType() == PlayerInteractEntityC2SPacket.InteractionType.ATTACK && mc.player.isOnGround()) {
                 mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionOnly(mc.player.getX(), mc.player.getY() + 0.1f, mc.player.getZ(), true));
