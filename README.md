@@ -48,3 +48,4 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Sprint
     - [x] NoFall
     - [x] SafeWalk
+    - [x] Fly
