@@ -44,6 +44,8 @@ public class ModuleManager {
         modules.add(new CrystalAura());
         modules.add(new NoWeather());
         modules.add(new NoParticle());
+        modules.add(new SafeWalk());
+        modules.add(new NoFall());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }

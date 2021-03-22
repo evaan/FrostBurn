@@ -46,5 +46,5 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Jesus
     - [x] Step
     - [x] Sprint
-    - [ ] NoFall
-    - [ ] Safewalk
+    - [x] NoFall
+    - [x] SafeWalk
