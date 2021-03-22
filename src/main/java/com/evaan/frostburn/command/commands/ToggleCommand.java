@@ -24,7 +24,7 @@ public class ToggleCommand extends Command {
         Module module = ModuleManager.getModule(args[1]);
         if(module != null) {
         	module.toggle();
-            ConfigManager.setValue(args[1] + ".enabled", String.valueOf(module.isEnabled()));
+            ConfigManager.setValue(args[1].toLowerCase() + ".enabled", String.valueOf(module.isEnabled()));
         } else sendMessage("Module not found!");
     }
 }

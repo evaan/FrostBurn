@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Friends {
     private static Friends instance = null;
 
-    private ArrayList<String> friends;
+    private final ArrayList<String> friends;
 
     private Friends() {
         friends = new ArrayList<>();

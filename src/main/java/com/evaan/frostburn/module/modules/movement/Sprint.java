@@ -12,7 +12,6 @@ public class Sprint extends Module {
     @Override
     public void onUpdate() {
         if (mc.player == null) return;
-        if (mc.player.input.movementForward != 0 || mc.player.input.movementSideways != 0) mc.player.setSprinting(true);
-        else mc.player.setSprinting(false);
+        mc.player.setSprinting(mc.player.input.movementForward != 0 || mc.player.input.movementSideways != 0);
     }
 }

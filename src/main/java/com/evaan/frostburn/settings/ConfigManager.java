@@ -95,24 +95,27 @@ public class ConfigManager {
 		ConfigManager.prepare();
         
         for(String moduleName : ModuleManager.getModuleNames()) {
-        	
-        	// Load modules enabled/disabled
-        	Module module = ModuleManager.getModule(moduleName);
-        	String key = moduleName + ".enabled";
-        	String settingString = config.getProperty(key, "false");
-        	Boolean enabled = settingString.equalsIgnoreCase("true") ? true : false;
-        	module.setEnabled(enabled);
-        	
-        	// Load settings for the module
-        	/*for(Setting setting : module.settings) {
-        		String settingName = setting.getName();
-        		String key = moduleName + "." + settingName;
-        	}*/
-        	
-        	// We're done here
-        	System.out.println("Loaded config for " + moduleName);
-        }
-        
+
+			// Load modules enabled/disabled
+			Module module = ModuleManager.getModule(moduleName);
+			String moduleKey = moduleName.toLowerCase() + ".enabled";
+			String settingString = config.getProperty(moduleKey, "false");
+
+			Boolean enabled = settingString.equalsIgnoreCase("true");
+			if (enabled != module.isEnabled()) module.setEnabled(enabled);
+
+			// Load settings for the module
+			for (Setting setting : module.settings) {
+				String settingName = setting.getName().toLowerCase();
+				String settingKey = moduleName.toLowerCase() + "." + settingName;
+
+				String value = config.getProperty(settingKey, null);
+				if (value != null) {
+					setting.setValue(value);
+				}
+			}
+		}
+
         System.out.println("Finished loading FrostBurn config");
 	}
 	
