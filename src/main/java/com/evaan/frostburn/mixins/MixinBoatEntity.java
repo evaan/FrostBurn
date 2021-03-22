@@ -30,7 +30,7 @@ public abstract class MixinBoatEntity extends Entity {
 			ClientPlayerEntity player = FrostBurn.mc.player;
 			if(player == null) return;
 			
-			if(player.hasVehicle() && this.hasPlayerRider()) { //make sure they are riding boat
+			if(player.hasVehicle()) { //make sure they are riding boat
 			
 				Vec3d origV = this.getVelocity();
 				double y = FrostBurn.mc.options.keyJump.isPressed() ? 0.5 : 0;
