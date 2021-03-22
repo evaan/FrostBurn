@@ -32,19 +32,19 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Timer
     - [x] Middle Click Pearl
     - [x] Middle Click Friend
-    - [ ] Reverse Step
     - [x] Fake Player
-    - [x] Velocity
     - [x] Discord Rich Presence
     - [x] Scaffold
     - [x] Auto Staircase
     - [ ] Yawlock
     - [ ] AntiAim
     - [ ] AutoTool
-  - [x] Movement Modules
+  - [ ] Movement Modules
     - [x] BoatFly
     - [x] Jesus
     - [x] Step
+    - [ ] Reverse Step
+    - [x] Velocity
     - [x] Sprint
     - [x] NoFall
     - [x] SafeWalk
