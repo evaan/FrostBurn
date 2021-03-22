@@ -55,10 +55,18 @@ public class ModuleManager {
     }
 
     public static ArrayList<Module> getModulesInCategory(Module.Category category) {
-        ArrayList<Module> modules = new ArrayList<>();
+        ArrayList<Module> cat = new ArrayList<>();
         for (Module module : modules) {
-            if (module.category.equals(category)) modules.add(module);
+            if (module.category.equals(category)) cat.add(module);
         }
-        return modules;
+        return cat;
+    }
+    
+    public static ArrayList<String> getModuleNames() {
+    	ArrayList<String> names = new ArrayList<>();
+    	for (Module module : modules) {
+            names.add(module.getName());
+        }
+    	return names;
     }
 }

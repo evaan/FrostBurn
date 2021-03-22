@@ -3,6 +3,7 @@ package com.evaan.frostburn.settings;
 import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
+import com.evaan.frostburn.util.Setting;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -92,23 +93,25 @@ public class ConfigManager {
 		
 		currentConfigName = configName;
 		ConfigManager.prepare();
-		
-        Enumeration<Object> e = config.keys(); 
-        while (e.hasMoreElements()) { 
-            String key = (String) e.nextElement();
-            
-            // Enable/Disable settings for a module
-            if(key.endsWith(".enabled")) {
-            	String moduleName = key.replaceAll(".enabled", "");
-	            Module module = ModuleManager.getModule(moduleName);
-	            if(module != null) {
-	            	String settingString = config.getProperty(key, "false");
-	            	Boolean enabled = settingString.equalsIgnoreCase("true") ? true : false;
-	            	module.setEnabled(enabled);
-	            	System.out.println("Loaded config for " + moduleName + ": " + settingString);
-	            }
-            }
-        } 
+        
+        for(String moduleName : ModuleManager.getModuleNames()) {
+        	
+        	// Load modules enabled/disabled
+        	Module module = ModuleManager.getModule(moduleName);
+        	String key = moduleName + ".enabled";
+        	String settingString = config.getProperty(key, "false");
+        	Boolean enabled = settingString.equalsIgnoreCase("true") ? true : false;
+        	module.setEnabled(enabled);
+        	
+        	// Load settings for the module
+        	/*for(Setting setting : module.settings) {
+        		String settingName = setting.getName();
+        		String key = moduleName + "." + settingName;
+        	}*/
+        	
+        	// We're done here
+        	System.out.println("Loaded config for " + moduleName);
+        }
         
         System.out.println("Finished loading FrostBurn config");
 	}

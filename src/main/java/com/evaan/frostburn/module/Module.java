@@ -1,5 +1,7 @@
 package com.evaan.frostburn.module;
 
+import java.util.ArrayList;
+
 import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.util.Setting;
@@ -13,6 +15,7 @@ import net.minecraft.util.Formatting;
  */
 public class Module {
     protected final MinecraftClient mc = MinecraftClient.getInstance();
+    public ArrayList<Setting> settings;
     
     String name;
     Category category;
@@ -20,6 +23,7 @@ public class Module {
     int bind;
 
     public Module(String name, Category category) {
+    	this.settings = new ArrayList<>();
         this.name = name;
         this.category = category;
         this.enabled = false;
@@ -89,6 +93,7 @@ public class Module {
 
     public Setting register(Setting setting) { 
     	SettingsManager.register(setting);
+    	this.settings.add(setting);
     	return setting; 
     }
 
