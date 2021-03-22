@@ -7,38 +7,41 @@ A 1.16.5 utility mod oriented towards anarchy servers
   - [x] Settings
   - [ ] ClickGUI
   - [ ] Render Modules
-    - [ ] HoleESP
     - [ ] Chams
-    - [ ] Viewmodel Changer
-    - [ ] Nametags
     - [x] Fullbright
+    - [ ] HoleESP
+    - [ ] Nametags
+    - [ ] ViewmodelChanger
+    - [x] Zoom
   - [ ] Combat Modules
-    - [x] Kill Aura
-    - [x] Crystal Aura
-    - [x] Bed Aura
-    - [x] Auto Anchor
-    - [ ] Auto Anvil
-    - [ ] Piston Aura
+    - [x] AutoAnchor
+    - [ ] AutoAnvil
+    - [x] AutoTotem
+    - [x] BedAura
     - [x] Burrow
+    - [x] Criticals 
+    - [x] CrystalAura (Missing Place)
+    - [x] KillAura
+    - [ ] PistonAura
     - [x] Surround
-    - [x] Auto Totem
-    - [x] Criticals
   - [ ] Misc Modules
-    - [ ] Packet Mine
-    - [ ] Shulker Peek
-    - [ ] Timer
-    - [x] Middle Click Pearl
-    - [x] Middle Click Friend
-    - [x] Step
-    - [ ] Reverse Step
-    - [x] Fake Player
-    - [x] Velocity
-    - [x] Sprint
-    - [x] Discord Rich Presence
-    - [x] Scaffold
-    - [x] Auto Staircase
-    - [ ] Yawlock
+    - [ ] AirPlace
     - [ ] AntiAim
+    - [x] AutoStaircase
     - [ ] AutoTool
+    - [x] DiscordRPC
+    - [x] FakePlayer
+    - [x] MiddleClickFriend
+    - [x] MiddleClickPearl
+    - [ ] PacketMine
+    - [x] Scaffold
+    - [ ] ShulkerPeek
+    - [ ] Timer
+    - [ ] Yawlock
+  - [ ] Movement Modules
+    - [x] Step
+    - [ ] ReverseStep
+    - [x] Sprint
+    - [x] Velocity
     - [x] BoatFly
     - [x] Jesus
