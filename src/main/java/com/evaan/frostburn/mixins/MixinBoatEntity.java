@@ -27,14 +27,8 @@ public abstract class MixinBoatEntity extends Entity {
 	private void velocityOverride(CallbackInfo cir) {
 		
 		if(ModuleManager.getModule("BoatFly").isEnabled()) {
-			ClientPlayerEntity player = null;
-			try {
-				player = FrostBurn.mc.player;
-				if(player == null) return;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return;
-			}
+			ClientPlayerEntity player = FrostBurn.mc.player;
+			if(player == null) return;
 			
 			if(player.hasVehicle()) { //make sure they are riding boat
 			
