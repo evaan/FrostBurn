@@ -4,6 +4,7 @@ import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import com.evaan.frostburn.util.Setting;
+import org.objectweb.asm.Type;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +16,8 @@ import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
+
+import static com.evaan.frostburn.util.Setting.Type.*;
 
 public class ConfigManager {
 	
@@ -111,7 +114,21 @@ public class ConfigManager {
 
 				String value = config.getProperty(settingKey, null);
 				if (value != null) {
-					setting.setValue(value);
+					Setting.Type settingType = setting.getType();
+
+					switch(settingType) {
+						case BOOLEAN:
+							setting.setValue(value.equalsIgnoreCase("true"));
+							break;
+						case FLOAT:
+							setting.setValue(Float.valueOf(value));
+							break;
+						case STRING:
+							setting.setValue(value);
+							break;
+						default:
+							System.out.println("WARNING: Unknown or unsupported type found! Type: " + settingType);
+					}
 				}
 			}
 		}

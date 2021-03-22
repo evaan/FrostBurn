@@ -7,6 +7,9 @@ import com.evaan.frostburn.settings.ConfigManager;
 import com.evaan.frostburn.util.Setting;
 import com.evaan.frostburn.util.SettingsManager;
 
+import static com.evaan.frostburn.util.Setting.*;
+import static com.evaan.frostburn.util.Setting.Type.BOOLEAN;
+
 /**
  * @Author evaan
  * https://github.com/evaan
@@ -32,17 +35,28 @@ public class SettingCommand extends Command {
         if (setting == null) {
         	sendMessage("Setting not found!");
         	return;
-        } else if (setting.getType() != Setting.Type.STRING) {
-        	// If it's not a string type, just set value
-        	setting.setValue(args[3]);
-        } else if (setting.getType() == Setting.Type.STRING) {
-        	// If it is string type, then we will check if it is a valid option
-        	// If the options list is empty, we also allow the setting of the value
-            if (setting.getOptions().contains(args[3]) || setting.getOptions().isEmpty()) { 
-            	setting.setValue(args[3]);
-            } else {
-            	sendMessage(args[3] + " not found in option!"); 
-            	return;
+        } else {
+            switch (setting.getType()) {
+                case BOOLEAN:
+                    setting.setValue(args[3].equalsIgnoreCase("true"));
+                    break;
+                case FLOAT:
+                    System.out.println("INT " + Float.valueOf(args[3]) + " from " + args[3]);
+                    setting.setValue(Float.valueOf(args[3]));
+                    break;
+                case STRING:
+                    System.out.println("STRING " + args[3]);
+                    // If it is string type, then we will check if it is a valid option
+                    // If the options list is empty, we also allow the setting of the value
+                    if (setting.getOptions().contains(args[3]) || setting.getOptions().isEmpty()) {
+                        setting.setValue(args[3]);
+                    } else {
+                        sendMessage(args[3] + " not found in option!");
+                        return;
+                    }
+                    break;
+                default:
+                    System.out.println("WARNING: Unknown or unsupported type found! Type: " + setting.getType());
             }
         }
         

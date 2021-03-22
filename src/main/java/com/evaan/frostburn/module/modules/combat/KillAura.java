@@ -42,7 +42,8 @@ public class KillAura extends Module {
 	        
 	    	for(Entity entity : filtered) {
 	    		if(entity != null) {
-	    			if(entity.isAttackable() && !(entity.getClass() == EndCrystalEntity.class)) {
+	    			// Don't attack dead/non living entities, ones we can't attack, and end crystals
+	    			if(entity.isLiving() && entity.isAttackable() && !(entity.getClass() == EndCrystalEntity.class)) {
 		                if (switchItem.getValue()) {
 		                    for (int i = 0; i < 9; i++) {
 		                        if (mc.player.inventory.getStack(i).getItem() instanceof SwordItem)

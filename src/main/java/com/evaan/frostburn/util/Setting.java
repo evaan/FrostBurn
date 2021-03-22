@@ -38,7 +38,7 @@ public class Setting<T> {
         this.value = value;
         this.min = min;
         this.max = max;
-        this.type = Type.INTEGER;
+        this.type = Type.FLOAT;
     }
 
     public Setting(String name, Module parent, ArrayList<T> options, T value) {
@@ -49,5 +49,5 @@ public class Setting<T> {
         this.type = Type.STRING;
     }
 
-    public enum Type {BOOLEAN, INTEGER, STRING}
+    public enum Type {BOOLEAN, FLOAT, STRING}
 }
