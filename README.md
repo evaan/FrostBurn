@@ -12,6 +12,8 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Viewmodel Changer
     - [ ] Nametags
     - [x] Fullbright
+    - [x] Zoom
+    - [x] NoWeather
   - [ ] Combat Modules
     - [x] Kill Aura
     - [x] Crystal Aura

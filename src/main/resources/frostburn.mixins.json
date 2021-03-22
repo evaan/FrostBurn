@@ -12,7 +12,8 @@
     "MixinKeyboard",
     "MixinMinecraftClient",
     "MixinBoatEntity",
-    "MixinFluidBlock"
+    "MixinFluidBlock",
+    "MixinWorldRenderer"
   ],
   "injectors": {
     "defaultRequire": 1
