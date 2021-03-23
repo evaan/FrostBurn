@@ -1,11 +1,10 @@
 package com.evaan.frostburn.module.modules.combat;
 
-import java.util.stream.Collectors;
-
 import com.evaan.frostburn.module.Module;
 import com.google.common.collect.Streams;
-
 import net.minecraft.entity.decoration.EndCrystalEntity;
+
+import java.util.stream.Collectors;
 
 public class CrystalAura extends Module {
 

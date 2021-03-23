@@ -7,9 +7,6 @@ import com.evaan.frostburn.settings.ConfigManager;
 import com.evaan.frostburn.util.Setting;
 import com.evaan.frostburn.util.SettingsManager;
 
-import static com.evaan.frostburn.util.Setting.*;
-import static com.evaan.frostburn.util.Setting.Type.BOOLEAN;
-
 /**
  * @Author evaan
  * https://github.com/evaan
