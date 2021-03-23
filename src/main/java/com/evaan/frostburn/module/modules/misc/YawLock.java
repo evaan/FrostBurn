@@ -10,18 +10,21 @@ public class YawLock extends Module {
     @Override
     public void onUpdate() {
         if (mc.player == null || mc.world == null) {disable(); return;}
+
+        double whereLook = mc.player.getEyeY();
+
         switch (mc.player.getMovementDirection()) {
             case NORTH:
-                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX(), mc.player.getY(), mc.player.getZ() - 1));
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX(), whereLook, mc.player.getZ() - 1));
                 break;
             case EAST:
-                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX() + 1, mc.player.getY(), mc.player.getZ()));
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX() + 1, whereLook, mc.player.getZ()));
                 break;
             case SOUTH:
-                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX(), mc.player.getY(), mc.player.getZ() + 1));
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX(), whereLook, mc.player.getZ() + 1));
                 break;
             case WEST:
-                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX() - 1, mc.player.getY(), mc.player.getZ()));
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX() - 1, whereLook, mc.player.getZ()));
                 break;
             default:
                 break;
