@@ -4,20 +4,11 @@ import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import com.evaan.frostburn.util.Setting;
-import org.objectweb.asm.Type;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Path;
-import java.util.Enumeration;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
-
-import static com.evaan.frostburn.util.Setting.Type.*;
 
 public class ConfigManager {
 	

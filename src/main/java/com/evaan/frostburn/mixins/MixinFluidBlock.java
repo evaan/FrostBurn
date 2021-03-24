@@ -1,20 +1,14 @@
 package com.evaan.frostburn.mixins;
 
-import org.spongepowered.asm.mixin.Mixin;
-
 import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.module.ModuleManager;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FluidBlock;
-import net.minecraft.block.FluidDrainable;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
+import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(FluidBlock.class)
 public abstract class MixinFluidBlock extends Block implements FluidDrainable {

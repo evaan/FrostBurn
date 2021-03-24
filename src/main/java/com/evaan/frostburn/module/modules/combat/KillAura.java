@@ -3,7 +3,6 @@ package com.evaan.frostburn.module.modules.combat;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.util.Setting;
 import com.google.common.collect.Streams;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.player.PlayerEntity;

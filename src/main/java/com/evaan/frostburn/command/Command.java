@@ -1,7 +1,6 @@
 package com.evaan.frostburn.command;
 
 import com.evaan.frostburn.FrostBurn;
-
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 

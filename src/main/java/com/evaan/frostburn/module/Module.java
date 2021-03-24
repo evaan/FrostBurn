@@ -1,13 +1,13 @@
 package com.evaan.frostburn.module;
 
-import java.util.ArrayList;
-
 import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.util.Setting;
 import com.evaan.frostburn.util.SettingsManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Formatting;
+
+import java.util.ArrayList;
 
 /**
  * @Author evaan

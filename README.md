@@ -27,8 +27,8 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] PistonAura
     - [x] Surround
   - [ ] Misc Modules
-    - [ ] AirPlace
-    - [ ] AntiAim
+    - [x] AirPlace
+    - [x] AntiAim
     - [x] AutoStaircase
     - [ ] AutoTool
     - [x] DiscordRPC
@@ -45,7 +45,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Discord Rich Presence
     - [x] Scaffold
     - [x] Auto Staircase
-    - [ ] Yawlock
+    - [x] Yawlock
   - [ ] Movement Modules
     - [x] BoatFly
     - [x] Fly
