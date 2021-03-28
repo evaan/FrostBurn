@@ -3,10 +3,7 @@ package com.evaan.frostburn.module;
 import com.evaan.frostburn.module.modules.combat.*;
 import com.evaan.frostburn.module.modules.misc.*;
 import com.evaan.frostburn.module.modules.movement.*;
-import com.evaan.frostburn.module.modules.render.Fullbright;
-import com.evaan.frostburn.module.modules.render.NoParticle;
-import com.evaan.frostburn.module.modules.render.NoWeather;
-import com.evaan.frostburn.module.modules.render.Zoom;
+import com.evaan.frostburn.module.modules.render.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
