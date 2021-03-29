@@ -48,6 +48,7 @@ public class ModuleManager {
         modules.add(new NoFall());
         modules.add(new Fly());
         modules.add(new YawLock());
+        modules.add(new Offhand());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }

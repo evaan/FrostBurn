@@ -5,8 +5,6 @@ import com.evaan.frostburn.util.Setting;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.ArrayList;
-
 public class YawLock extends Module {
     public YawLock() {super("YawLock", Category.MISC);}
 

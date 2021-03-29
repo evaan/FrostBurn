@@ -16,7 +16,7 @@ public class CrystalAura extends Module {
         
         try {
 	    	EndCrystalEntity entity = (EndCrystalEntity) Streams.stream(mc.world.getEntities()).filter(e -> e instanceof EndCrystalEntity && mc.player.distanceTo(e) <= 4.0).collect(Collectors.toList()).get(0);
-    		if(entity != null) {
+    		if (entity != null) {
     			if(!entity.isAttackable()) return;             
                 mc.interactionManager.attackEntity(mc.player, entity);
             }
