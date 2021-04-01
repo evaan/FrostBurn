@@ -15,9 +15,11 @@ import java.util.Optional;
  * https://github.com/evaan
  */
 public class MiddleClickFriend extends Module {
-    public MiddleClickFriend() {super("MiddleClickFriend", Category.MISC);}
-
     public boolean pressed = false; //fixes spam click
+
+    public MiddleClickFriend() {
+        super("MiddleClickFriend", Category.MISC);
+    }
 
     @Override
     public void onUpdate() {
@@ -34,6 +36,7 @@ public class MiddleClickFriend extends Module {
                     Command.sendMessage("Added " + Formatting.GREEN + lookingAt.get().getName().asString() + Formatting.WHITE + " to your friends list");
                 }
             }
-        } else if (GLFW.glfwGetMouseButton(mc.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_MIDDLE) == 0) pressed = false;
+        } else if (GLFW.glfwGetMouseButton(mc.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_MIDDLE) == 0)
+            pressed = false;
     }
 }
