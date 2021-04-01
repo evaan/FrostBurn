@@ -16,8 +16,6 @@ import net.minecraft.util.math.Vec3d;
 public class AutoStaircase extends Module {
     public AutoStaircase() {super("AutoStaircase", Category.MISC);}
 
-    boolean jumping = false;
-
     @Override
     public void onUpdate() {
         if (mc.player == null || mc.world == null) {disable(); return;}

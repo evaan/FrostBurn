@@ -2,6 +2,7 @@ package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.util.Setting;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 
@@ -15,11 +16,13 @@ public class Offhand extends Module {
                     false
             )
     );
-    Setting<Integer> fallDistance = register(
+    Setting<Float> fallDistance = register(
             new Setting(
                     "FallDistance",
                     this,
-                    15
+                    15f,
+                    0f,
+                    256f
             )
     );
     Setting<Float> totemSwapHealth = register(
@@ -43,45 +46,26 @@ public class Offhand extends Module {
     public void onUpdate() {
         if (mc.player == null) return;
 
-        if (mc.player.getAbsorptionAmount() + mc.player.getHealth() <= totemSwapHealth.getValue()) {
-            totemSwap();
-        } else if (totemOnFall.getValue() && mc.player.fallDistance >= fallDistance.getValue()) {
-            totemSwap();
-        } else if (offhandCrystal.getValue()) {
-            crystalSwap();
+        if ((mc.player.getAbsorptionAmount() + mc.player.getHealth() <= totemSwapHealth.getValue()) ||
+                (totemOnFall.getValue() && mc.player.fallDistance >= fallDistance.getValue())) {
+            itemSwap(Items.TOTEM_OF_UNDYING);
+        }  else if (offhandCrystal.getValue()) {
+            itemSwap(Items.END_CRYSTAL);
         }
     }
 
-    private void crystalSwap() {
+    private void itemSwap(Item item) {
         if (mc.player == null) return;
         int i;
         Boolean found = false;
-        if (!(mc.player.getOffHandStack().getItem().equals(Items.END_CRYSTAL))) {
+        if (!(mc.player.getOffHandStack().getItem().equals(item))) {
             for (i = 9; i <= 36; i++) {
-                if (mc.player.inventory.getStack(i).getItem().equals(Items.END_CRYSTAL)) {
+                if (mc.player.inventory.getStack(i).getItem().equals(item)) {
                     found = true;
                     break;
                 }
             }
-            if (!(mc.player.getOffHandStack().getItem().equals(Items.END_CRYSTAL)) && found) {
-                mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, i, 0, SlotActionType.PICKUP, mc.player);
-                mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, 45, 0, SlotActionType.PICKUP, mc.player);
-            }
-        }
-    }
-
-    private void totemSwap() {
-        if (mc.player == null) return;
-        int i;
-        Boolean found = false;
-        if (!(mc.player.getOffHandStack().getItem().equals(Items.TOTEM_OF_UNDYING))) {
-            for (i = 9; i <= 36; i++) {
-                if (mc.player.inventory.getStack(i).getItem().equals(Items.TOTEM_OF_UNDYING)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!(mc.player.getOffHandStack().getItem().equals(Items.TOTEM_OF_UNDYING)) && found) {
+            if (!(mc.player.getOffHandStack().getItem().equals(item)) && found) {
                 mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, i, 0, SlotActionType.PICKUP, mc.player);
                 mc.interactionManager.clickSlot(mc.player.currentScreenHandler.syncId, 45, 0, SlotActionType.PICKUP, mc.player);
             }
