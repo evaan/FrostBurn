@@ -10,6 +10,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Nuker extends Module {
     public Nuker() {super("Nuker", Category.MISC);}
@@ -17,6 +18,13 @@ public class Nuker extends Module {
     Setting<Boolean> faceBlock = register(
             new Setting(
                     "FaceBlock",
+                    this,
+                    true
+            )
+    );
+    Setting<Boolean> swing = register(
+            new Setting(
+                    "Swing",
                     this,
                     true
             )
@@ -48,40 +56,38 @@ public class Nuker extends Module {
         assert mc.player != null;
         assert mc.world != null;
 
-        int positiveSideX = ((int) mc.player.getX()) + (range.getValue().intValue());
-        int positiveSideY = ((int) mc.player.getY()) + (range.getValue().intValue());
-        int positiveSideZ = ((int) mc.player.getZ()) + (range.getValue().intValue());
+        int varRange = range.getValue().intValue();
+        int xPos = (int) mc.player.getX();
+        int yPos = (int) mc.player.getY();
+        int zPos = (int) mc.player.getZ();
 
-        int negativeSideX = ((int) mc.player.getX()) - (range.getValue().intValue());
-        int negativeSideY = (int) mc.player.getY();
-        int negativeSideZ = ((int) mc.player.getZ()) - (range.getValue().intValue());
+        int positiveSideX = xPos + varRange;
+        int positiveSideY = yPos + varRange;
+        int positiveSideZ = zPos + varRange;
 
-        for (int y = negativeSideY; y <= positiveSideY; y++) {
+        int negativeSideX = xPos - varRange;
+        int negativeSideZ = zPos - varRange;
+
+        for (int y = yPos; y <= positiveSideY; y++) {
             for (int x = negativeSideX; x <= positiveSideX; x++) {
                 for (int z = negativeSideZ; z <= positiveSideZ; z++) {
-                    blocks.add(new BlockPos(x, y, z));
+                    BlockPos bp = new BlockPos(x, y, z);
+                    if (mc.world.getBlockState(bp).getBlock() != Blocks.AIR){
+                        blocks.add(bp);
+                    }
                 }
             }
         }
 
-        int length = blocks.size() - 1;
-        // clear air from the block list
-        for (int j = length; j >= 0; j--) {
-            if (mc.world.getBlockState(blocks.get(j)).getBlock() == Blocks.AIR) {
-                blocks.remove(j);
-            }
-        }
-
         if (faceBlock.getValue()) {
-            try {
-                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, Vec3d.of(blocks.get(0)));
-            } catch (Exception ignored) {}
+            mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, Vec3d.of(blocks.get(0)));
         }
 
-        for (int i = 0; i <= blocksToMine.getValue().intValue() - 1; i++) {
-            try {
-                breakBlock(blocks.get(i));
-            } catch (Exception ignored) {
+        Iterator<BlockPos> blocksIter = blocks.iterator();
+        for (int j = 0; j < blocks.size(); j++) {
+            if (j < blocksToMine.getValue() && blocksIter.hasNext()) {
+                breakBlock(blocksIter.next());
+            } else {
                 break;
             }
         }
@@ -94,8 +100,9 @@ public class Nuker extends Module {
             mc.interactionManager.updateBlockBreakingProgress(blockPos, Direction.UP);
 
             assert mc.player != null;
-            mc.player.swingHand(Hand.MAIN_HAND);
-
+            if (swing.getValue()) {
+                mc.player.swingHand(Hand.MAIN_HAND);
+            }
         }
     }
 }
