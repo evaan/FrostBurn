@@ -15,7 +15,7 @@ public class Velocity extends Module {
     public Velocity() {super("Velocity", Category.MISC);}
 
     @EventHandler
-    private Listener<PacketEvent.Receive> packetListener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetListener = new Listener<>(event -> {
         if (event.getPacket() instanceof EntityVelocityUpdateS2CPacket && ((EntityVelocityUpdateS2CPacket) event.getPacket()).getId() == mc.player.getEntityId()) event.cancel();
         else if (event.getPacket() instanceof ExplosionS2CPacket) event.cancel();
     });

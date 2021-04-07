@@ -1,7 +1,7 @@
 package com.evaan.frostburn.module.modules.movement;
 
 import com.evaan.frostburn.module.Module;
-import net.minecraft.client.MinecraftClient;
+import com.evaan.frostburn.util.Setting;
 
 /**
  * @Author majorsopa
@@ -10,17 +10,24 @@ import net.minecraft.client.MinecraftClient;
 public class Step extends Module {
     public Step() {super("Step", Category.MOVEMENT);}
 
-    float prevStepHeight;
+    Setting<Float> newStepHeight = register(
+            new Setting(
+                    "StepHeight",
+                    this,
+                    1f,
+                    0f,
+                    100f
+            )
+    );
 
     @Override
-    public void onEnable() {
+    public void onUpdate() {
         if (mc.player == null) {return;}
-        prevStepHeight = mc.player.stepHeight;
-        mc.player.stepHeight = 1.5f;
+        mc.player.stepHeight = newStepHeight.getValue();
     }
 
     @Override
     public void onDisable() {
-        mc.player.stepHeight = prevStepHeight;
+        mc.player.stepHeight = 0.6f;
     }
 }

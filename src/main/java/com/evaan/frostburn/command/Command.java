@@ -1,6 +1,6 @@
 package com.evaan.frostburn.command;
 
-import net.minecraft.client.MinecraftClient;
+import com.evaan.frostburn.FrostBurn;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 
@@ -15,5 +15,9 @@ public class Command {
     public Command(String[] name) {this.name = name;}
     public void onCommand(String[] args) {}
 
-    public static void sendMessage(String message) {MinecraftClient.getInstance().player.sendMessage(new LiteralText(Formatting.BLUE + "[FrostBurn] " + Formatting.WHITE + message), false);}
+    public static void sendMessage(String message) {
+    	try {
+    		FrostBurn.mc.player.sendMessage(new LiteralText(Formatting.BLUE + "[FrostBurn] " + Formatting.WHITE + message), false);
+    	} catch (Exception e) {}
+    }
 }

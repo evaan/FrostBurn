@@ -7,36 +7,44 @@ A 1.16.5 utility mod oriented towards anarchy servers
   - [x] Settings
   - [ ] ClickGUI
   - [ ] Render Modules
-    - [ ] HoleESP
     - [ ] Chams
-    - [ ] Viewmodel Changer
-    - [ ] Nametags
     - [x] Fullbright
+    - [ ] HoleESP
+    - [ ] Nametags
+    - [x] NoParticle
+    - [x] NoWeather
+    - [ ] ViewmodelChanger
+    - [x] Zoom
   - [ ] Combat Modules
-    - [x] Kill Aura
-    - [ ] Crystal Aura
-    - [x] Bed Aura
-    - [x] Auto Anchor
-    - [ ] Auto Anvil
-    - [ ] Piston Aura
+    - [x] AutoAnchor
+    - [ ] AutoAnvil
+    - [x] AutoTotem
+    - [x] BedAura
     - [x] Burrow
+    - [x] Criticals 
+    - [x] CrystalAura (Missing Place)
+    - [x] KillAura
+    - [ ] PistonAura
     - [x] Surround
-    - [x] Auto Totem
-    - [x] Criticals
   - [ ] Misc Modules
-    - [ ] Packet Mine
-    - [ ] Shulker Peek
-    - [ ] Timer
-    - [x] Middle Click Pearl
-    - [x] Middle Click Friend
-    - [x] Step
-    - [ ] Reverse Step
-    - [x] Fake Player
-    - [x] Velocity
-    - [x] Sprint
-    - [x] Discord Rich Presence
-    - [x] Scaffold
-    - [x] Auto Staircase
-    - [ ] Yawlock
-    - [ ] AntiAim
+    - [x] AirPlace
+    - [x] AntiAim
+    - [x] AutoStaircase
     - [ ] AutoTool
+    - [x] DiscordRPC
+    - [x] FakePlayer
+    - [x] MiddleClickFriend
+    - [x] MiddleClickPearl
+    - [ ] PacketMine
+    - [x] Scaffold
+    - [ ] ShulkerPeek
+    - [ ] Timer
+    - [x] Yawlock
+  - [ ] Movement Modules
+    - [x] BoatFly
+    - [x] Fly
+    - [x] Jesus
+    - [ ] ReverseStep
+    - [x] Sprint
+    - [x] Step
+    - [x] Velocity

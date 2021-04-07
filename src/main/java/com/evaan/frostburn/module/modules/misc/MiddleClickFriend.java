@@ -5,10 +5,7 @@ import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.util.Friends;
 import net.minecraft.client.render.debug.DebugRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Items;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.HitResult;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.Optional;
@@ -18,9 +15,11 @@ import java.util.Optional;
  * https://github.com/evaan
  */
 public class MiddleClickFriend extends Module {
-    public MiddleClickFriend() {super("MiddleClickFriend", Category.MISC);}
-
     public boolean pressed = false; //fixes spam click
+
+    public MiddleClickFriend() {
+        super("MiddleClickFriend", Category.MISC);
+    }
 
     @Override
     public void onUpdate() {
@@ -37,6 +36,7 @@ public class MiddleClickFriend extends Module {
                     Command.sendMessage("Added " + Formatting.GREEN + lookingAt.get().getName().asString() + Formatting.WHITE + " to your friends list");
                 }
             }
-        } else if (GLFW.glfwGetMouseButton(mc.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_MIDDLE) == 0) pressed = false;
+        } else if (GLFW.glfwGetMouseButton(mc.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_MIDDLE) == 0)
+            pressed = false;
     }
 }

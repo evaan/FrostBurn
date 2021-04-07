@@ -1,7 +1,7 @@
 package com.evaan.frostburn.mixins;
 
-import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.FrostBurn;
+import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.command.CommandManager;
 import com.evaan.frostburn.event.events.PacketEvent;
 import io.netty.channel.ChannelHandlerContext;
@@ -36,8 +36,16 @@ public class MixinClientConnection {
     public void send(Packet<?> packet, GenericFutureListener<? extends Future<? super Void>> genericFutureListener_1, CallbackInfo callback) {
         if (packet instanceof ChatMessageC2SPacket && ((ChatMessageC2SPacket) packet).getChatMessage().startsWith(Command.prefix)) {
             String[] args = ((ChatMessageC2SPacket) packet).getChatMessage().substring(1).split(" ");
-            CommandManager.commands.forEach(command -> {for (String name : command.name) {if (args[0].equalsIgnoreCase(name)) command.onCommand(args); found = true;}});
-            if (!found) {Command.sendMessage("Command not found! Do " + Command.prefix + "help for a list of commands.");}
+            CommandManager.commands.forEach(command -> {
+            	for (String name : command.name) {
+	            	if (args[0].equalsIgnoreCase(name)) command.onCommand(args); 
+	            	found = true;
+	            	}
+	            }
+            );
+            if (!found) {
+            	Command.sendMessage("Command not found! Do " + Command.prefix + "help for a list of commands.");
+            }
             callback.cancel();
         }
         PacketEvent.Send event = new PacketEvent.Send(packet);

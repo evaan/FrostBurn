@@ -7,12 +7,15 @@ import com.evaan.frostburn.util.SettingsManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Formatting;
 
+import java.util.ArrayList;
+
 /**
  * @Author evaan
  * https://github.com/evaan
  */
 public class Module {
     protected final MinecraftClient mc = MinecraftClient.getInstance();
+    public ArrayList<Setting> settings;
     
     String name;
     Category category;
@@ -20,6 +23,7 @@ public class Module {
     int bind;
 
     public Module(String name, Category category) {
+    	this.settings = new ArrayList<>();
         this.name = name;
         this.category = category;
         this.enabled = false;
@@ -27,25 +31,71 @@ public class Module {
         this.bind = 0;
     }
 
-    public String getName() {return name;}
-    public Category getCategory() {return category;}
-    public boolean isEnabled() {return enabled;}
-    public boolean isDrawn() {return drawn;}
-    public int getBind() {return bind;}
+    public String getName() {
+    	return name;
+    }
+    
+    public Category getCategory() {
+    	return category;
+    }
+    
+    public boolean isEnabled() {
+    	return enabled;
+    }
+    
+    public boolean isDrawn() {
+    	return drawn;
+    }
+    
+    public int getBind() {
+    	return bind;
+    }
 
-    public void setEnabled(boolean enabled) {if (enabled) enable(); else disable();}
-    public void setDrawn(boolean drawn) {this.drawn = drawn;}
-    public void setBind(int bind) {this.bind = bind;}
+    public void setEnabled(boolean enabled) {
+    	if (enabled) enable(); 
+    	else disable();
+    }
+    
+    public void setDrawn(boolean drawn) {
+    	this.drawn = drawn;
+    }
+    
+    public void setBind(int bind) {
+    	this.bind = bind;
+    }
 
     public void onEnable() {}
+    
     public void onDisable() {}
+    
     public void onUpdate() {}
+    
     public void onRender() {}
-    public void toggle() {if (enabled) disable(); else enable();}
-    public void enable() {enabled = true; Command.sendMessage(name + Formatting.GREEN + " enabled!"); FrostBurn.EVENT_BUS.subscribe(this); onEnable();}
-    public void disable() {enabled = false; Command.sendMessage(name + Formatting.RED + " disabled!"); FrostBurn.EVENT_BUS.unsubscribe(this); onDisable();}
+    
+    public void toggle() {
+    	if (enabled) disable(); 
+    	else enable();
+    }
+    
+    public void enable() {
+    	enabled = true; 
+    	if(FrostBurn.mc != null) Command.sendMessage(name + Formatting.GREEN + " enabled!"); 
+    	FrostBurn.EVENT_BUS.subscribe(this); 
+    	onEnable();
+    }
+    
+    public void disable() {
+    	enabled = false; 
+    	if(FrostBurn.mc != null) Command.sendMessage(name + Formatting.RED + " disabled!"); 
+    	FrostBurn.EVENT_BUS.unsubscribe(this); 
+    	onDisable();
+    }
 
-    public Setting register(Setting setting) { SettingsManager.register(setting); return setting; }
+    public Setting register(Setting setting) { 
+    	SettingsManager.register(setting);
+    	this.settings.add(setting);
+    	return setting; 
+    }
 
-    public enum Category{COMBAT, MISC, RENDER, MOVEMENT}
+    public enum Category {COMBAT, MISC, RENDER, MOVEMENT}
 }

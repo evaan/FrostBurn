@@ -10,7 +10,11 @@
     "MixinClientPlayerEntity",
     "MixinGameRenderer",
     "MixinKeyboard",
-    "MixinMinecraftClient"
+    "MixinMinecraftClient",
+    "MixinBoatEntity",
+    "MixinFluidBlock",
+    "MixinWorldRenderer",
+    "MixinPlayerEntity"
   ],
   "injectors": {
     "defaultRequire": 1

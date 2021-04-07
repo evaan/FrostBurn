@@ -19,6 +19,7 @@ public class ModuleManager {
         modules = new ArrayList<>();
 
         modules.add(new AirPlace());
+        modules.add(new MiddleClickPearl());
         modules.add(new MiddleClickFriend());
         modules.add(new Burrow());
         modules.add(new Surround());
@@ -37,6 +38,18 @@ public class ModuleManager {
         modules.add(new Scaffold());
         modules.add(new Step());
         modules.add(new AntiAim());
+        modules.add(new Zoom());
+        modules.add(new BoatFly());
+        modules.add(new Jesus());
+        modules.add(new CrystalAura());
+        modules.add(new NoWeather());
+        modules.add(new NoParticle());
+        modules.add(new SafeWalk());
+        modules.add(new NoFall());
+        modules.add(new Fly());
+        modules.add(new YawLock());
+        modules.add(new Offhand());
+        modules.add(new Nuker());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
@@ -50,10 +63,18 @@ public class ModuleManager {
     }
 
     public static ArrayList<Module> getModulesInCategory(Module.Category category) {
-        ArrayList<Module> modules = new ArrayList<>();
+        ArrayList<Module> cat = new ArrayList<>();
         for (Module module : modules) {
-            if (module.category.equals(category)) modules.add(module);
+            if (module.category.equals(category)) cat.add(module);
         }
-        return modules;
+        return cat;
+    }
+    
+    public static ArrayList<String> getModuleNames() {
+    	ArrayList<String> names = new ArrayList<>();
+    	for (Module module : modules) {
+            names.add(module.getName());
+        }
+    	return names;
     }
 }

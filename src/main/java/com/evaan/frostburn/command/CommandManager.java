@@ -22,6 +22,7 @@ public class CommandManager {
         commands.add(new FriendCommand());
         commands.add(new SettingCommand());
         commands.add(new DrawnCommand());
+        commands.add(new ConfigCommand());
 
         commands.sort(Comparator.comparing(object -> object.name[0]));
     }

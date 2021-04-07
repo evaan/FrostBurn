@@ -2,15 +2,11 @@ package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 
 
 /**
@@ -19,8 +15,6 @@ import net.minecraft.world.World;
  */
 public class AutoStaircase extends Module {
     public AutoStaircase() {super("AutoStaircase", Category.MISC);}
-
-    boolean jumping = false;
 
     @Override
     public void onUpdate() {
@@ -40,6 +34,8 @@ public class AutoStaircase extends Module {
             case WEST:
                 mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(mc.player.getX() - 1, mc.player.getY(), mc.player.getZ()));
                 break;
+            default:
+            	break;
         }
         if (mc.world.getBlockState(pos).getMaterial().isReplaceable()) {
             mc.options.keyForward.setPressed(false);

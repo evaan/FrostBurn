@@ -2,7 +2,6 @@ package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
 import net.minecraft.block.AirBlock;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
