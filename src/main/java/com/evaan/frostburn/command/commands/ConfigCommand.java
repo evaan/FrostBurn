@@ -6,7 +6,7 @@ import com.evaan.frostburn.settings.ConfigManager;
 public class ConfigCommand extends Command {
 
     public ConfigCommand() {
-    	super(new String[]{"config", "t"});
+    	super(new String[]{"config", "c"});
     }
 
     @Override

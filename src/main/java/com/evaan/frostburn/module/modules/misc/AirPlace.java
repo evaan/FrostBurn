@@ -24,21 +24,17 @@ public class AirPlace extends Module {
     public void onUpdate() {
         if (mc.crosshairTarget instanceof BlockHitResult || mc.player.getMainHandStack().getItem() instanceof BlockItem) {
 
-            placePos = ((BlockHitResult) mc.crosshairTarget).getBlockPos();
+            try {
+                placePos = ((BlockHitResult) mc.crosshairTarget).getBlockPos();
+            } catch (Exception ignored) {} //apparently if you look at an entity the game crashes
 
             if (mc.world.getBlockState(placePos).getBlock() instanceof AirBlock) {
 
                 if (mc.options.keyUse.wasPressed() || mc.options.keyUse.isPressed()) {
                     mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(placePos), Direction.DOWN, placePos, false));
-
+                    mc.player.swingHand(Hand.MAIN_HAND);
                 }
             }
         }
     }
-
-    @Override
-    public void onEnable() {
-        placePos = mc.player.getBlockPos();
-    }
-
 }
