@@ -81,7 +81,7 @@ public class ConfigManager {
 	public static String getValue(String key, String backup) {
 		return config.getProperty(key, backup);
 	}
-	
+
 	public static void loadConfig(String configName) {
 		System.out.println("Loading FrostBurn config named \"" + configName + "\"");
 		

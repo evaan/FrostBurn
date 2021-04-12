@@ -12,6 +12,8 @@ import net.minecraft.util.math.Vec3d;
 /**
  * @Author majorsopa
  * https://github.com/majorsopa
+ * @Author evaan
+ * https://github.com/evaan
  */
 public class AutoStaircase extends Module {
     public AutoStaircase() {super("AutoStaircase", Category.MISC);}
