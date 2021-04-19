@@ -21,7 +21,6 @@ public class ModuleManager {
         modules.add(new AirPlace());
         modules.add(new MiddleClickPearl());
         modules.add(new MiddleClickFriend());
-        modules.add(new Burrow());
         modules.add(new Surround());
         modules.add(new KillAura());
         modules.add(new AutoAnchor());
@@ -36,20 +35,18 @@ public class ModuleManager {
         modules.add(new AutoStaircase());
         modules.add(new Fullbright());
         modules.add(new Scaffold());
-        modules.add(new Step());
-        modules.add(new AntiAim());
         modules.add(new Zoom());
-        modules.add(new BoatFly());
         modules.add(new Jesus());
         modules.add(new CrystalAura());
         modules.add(new NoWeather());
         modules.add(new NoParticle());
         modules.add(new SafeWalk());
         modules.add(new NoFall());
-        modules.add(new Fly());
         modules.add(new YawLock());
         modules.add(new Offhand());
         modules.add(new Nuker());
+        modules.add(new HUD());
+        modules.add(new CleanChat());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }

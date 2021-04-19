@@ -34,8 +34,8 @@ public class Nuker extends Module {
                     "Range",
                     this,
                     3f,
-                    0,
-                    4
+                    0f,
+                    4f
             )
     );
     Setting<Float> blocksToMine = register(
@@ -43,8 +43,8 @@ public class Nuker extends Module {
                     "BlocksToMine",
                     this,
                     1f,
-                    1,
-                    10
+                    1f,
+                    10f
             )
     );
 
