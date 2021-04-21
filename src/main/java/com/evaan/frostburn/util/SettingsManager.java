@@ -26,7 +26,7 @@ public class SettingsManager {
         return null;
     }
 
-    public ArrayList<Setting> getSettings(Module parent) {
+    public static ArrayList<Setting> getSettings(Module parent) {
         ArrayList<Setting> sets = new ArrayList<>();
         for (Setting setting : settings) {
             if (setting.parent.equals(parent)) sets.add(setting);

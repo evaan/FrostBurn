@@ -26,6 +26,7 @@ public class Setting<T> {
     public void setValue(T value) {this.value = value;}
 
     public Setting(String name, Module parent, T value) {
+        this.opened = false;
         this.name = name;
         this.parent = parent;
         this.value = value;
@@ -33,6 +34,7 @@ public class Setting<T> {
     }
 
     public Setting(String name, Module parent, T value, T min, T max) {
+        this.opened = false;
         this.name = name;
         this.parent = parent;
         this.value = value;
@@ -42,11 +44,22 @@ public class Setting<T> {
     }
 
     public Setting(String name, Module parent, ArrayList<T> options, T value) {
+        this.opened = false;
         this.name = name;
         this.parent = parent;
         this.value = value;
         this.options = options;
         this.type = Type.STRING;
+    }
+
+    public String getCorrectString(String stringIn) {
+        if (this.value instanceof String) {
+            for (String s : (ArrayList<String>) options) {
+                if (s.equalsIgnoreCase(stringIn)) return s;
+            }
+            return null;
+        }
+        return null;
     }
 
     public enum Type {BOOLEAN, FLOAT, STRING}

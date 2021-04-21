@@ -7,6 +7,7 @@ import com.evaan.frostburn.util.SettingsManager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Formatting;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -97,5 +98,20 @@ public class Module {
     	return setting; 
     }
 
-    public enum Category {COMBAT, MISC, RENDER, MOVEMENT}
+    public enum Category {
+        COMBAT("Combat"),
+        MISC("Misc"),
+        RENDER("Render"),
+        MOVEMENT("Movement");
+
+        String name;
+
+        Category(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+    }
 }
