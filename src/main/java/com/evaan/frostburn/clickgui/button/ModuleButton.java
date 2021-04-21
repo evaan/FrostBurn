@@ -1,7 +1,7 @@
-package com.evaan.frostburn.gui.button;
+package com.evaan.frostburn.clickgui.button;
 
 import com.evaan.frostburn.FrostBurn;
-import com.evaan.frostburn.gui.Dropdown;
+import com.evaan.frostburn.clickgui.Dropdown;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.util.Wrapper;
 import net.minecraft.client.util.math.MatrixStack;

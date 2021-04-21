@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * @author Gopro336
  * some code ported from Zenith client (my client)
- * need to fix scroll
+ * fixed scroll -evaan
  */
 
 public class ClickGui extends Screen implements Wrapper {
