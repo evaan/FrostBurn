@@ -18,7 +18,7 @@ public class ModuleManager {
     public static void init() {
         modules = new ArrayList<>();
 
-        modules.add(new NewGui());
+        modules.add(new ClickGuiMod());
         modules.add(new AirPlace());
         modules.add(new MiddleClickPearl());
         modules.add(new MiddleClickFriend());
@@ -26,7 +26,6 @@ public class ModuleManager {
         modules.add(new KillAura());
         modules.add(new AutoAnchor());
         modules.add(new BedAura());
-        modules.add(new ClickGuiMod());
         modules.add(new AutoTotem());
         modules.add(new Velocity());
         modules.add(new Sprint());

@@ -1,7 +1,7 @@
-package com.evaan.frostburn.gui;
+package com.evaan.frostburn.clickgui;
 
 import com.evaan.frostburn.FrostBurn;
-import com.evaan.frostburn.gui.button.ModuleButton;
+import com.evaan.frostburn.clickgui.button.ModuleButton;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import com.evaan.frostburn.util.Wrapper;
