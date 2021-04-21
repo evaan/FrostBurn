@@ -8,12 +8,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Quaternion;
 
 import java.awt.*;
-//import java.util.ArrayList;
 
 /**
  * @author Gopro336
  */
-
 public class ModuleButton implements Wrapper
 {
 	public boolean startHighlight;

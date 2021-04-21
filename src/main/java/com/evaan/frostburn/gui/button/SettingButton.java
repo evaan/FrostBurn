@@ -7,30 +7,28 @@ import com.evaan.frostburn.util.Wrapper;
 import net.minecraft.client.util.math.MatrixStack;
 
 import java.awt.*;
-import java.util.ArrayList;
 
-
+/**
+ * @author Gopro336
+ */
 public class SettingButton implements Wrapper
 {
 	public Setting setting;
 	private boolean state;
-	public static final ArrayList<SettingButton> subButtons = new ArrayList<>();
 	private final double W;
 	private final double H;
 	private Module module;
+	private ModuleButton parentMB;
 	private double X;
 	private double Y;
-	public boolean isLight;
 
-	public SettingButton(ModuleButton parent, Module module, double x, double y, double w, double h, boolean light)
-	{
+	public SettingButton(ModuleButton parent, Module module, double x, double y, double w, double h) {
 		this.module = module;
+		this.parentMB = parent;
 		X = x;
 		Y = y;
 		W = w;
 		H = h;
-
-		isLight = light;
 	}
 
 	public void update() {

@@ -16,9 +16,9 @@ public class ModeButton extends SettingButton implements Wrapper
 {
 	private final Setting setting;
 
-	public ModeButton(ModuleButton parent, Module module, Setting setting, double X, double Y, double W, double H, boolean light)
+	public ModeButton(ModuleButton parent, Module module, Setting<?> setting, double X, double Y, double W, double H)
 	{
-		super(parent, module, X, Y, W, H, light);
+		super(parent, module, X, Y, W, H);
 		this.setting = setting;
 	}
 
@@ -57,7 +57,7 @@ public class ModeButton extends SettingButton implements Wrapper
 	}
 
 	@Override
-	public Setting getValue(){
+	public Setting<?> getValue(){
 		return setting;
 	}
 

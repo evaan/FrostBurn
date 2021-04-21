@@ -13,6 +13,7 @@ import java.util.ArrayList;
 /**
  * @author Gopro336
  * some code ported from Zenith client (my client)
+ * need to fix scroll
  */
 
 public class ClickGui extends Screen implements Wrapper {
@@ -24,7 +25,7 @@ public class ClickGui extends Screen implements Wrapper {
         windows = new ArrayList<>();
         int xOffset = 3;
         for (Module.Category category : Module.Category.values()) {
-            windows.add(new Window(category, xOffset, 3, 100, 25));
+            windows.add(new Window(category, xOffset, 3, 100, 20));
             xOffset += 120;
         }
     }

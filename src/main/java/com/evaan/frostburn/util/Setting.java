@@ -26,7 +26,6 @@ public class Setting<T> {
     public void setValue(T value) {this.value = value;}
 
     public Setting(String name, Module parent, T value) {
-        this.opened = false;
         this.name = name;
         this.parent = parent;
         this.value = value;
@@ -34,7 +33,6 @@ public class Setting<T> {
     }
 
     public Setting(String name, Module parent, T value, T min, T max) {
-        this.opened = false;
         this.name = name;
         this.parent = parent;
         this.value = value;
@@ -44,7 +42,6 @@ public class Setting<T> {
     }
 
     public Setting(String name, Module parent, ArrayList<T> options, T value) {
-        this.opened = false;
         this.name = name;
         this.parent = parent;
         this.value = value;

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 /**
  * @author Gopro336
  */
-
 public class Dropdown {
 
     private final double W;
@@ -27,8 +26,7 @@ public class Dropdown {
 
     private final ArrayList<SettingButton> buttons = new ArrayList<>();
 
-    public Dropdown(ModuleButton mButton, Module module, double x, double y, double w, double h)
-    {
+    public Dropdown(ModuleButton mButton, Module module, double x, double y, double w, double h) {
         X = x;
         Y = y;
         W = w;
@@ -41,26 +39,25 @@ public class Dropdown {
         initGui(boost);
     }
 
-    public void initGui(int boost)
-    {
+    public void initGui(int boost) {
 
-        if (SettingsManager.getSettings(module) == null) return;
+        //if (SettingsManager.getSettings(module) == null) return;
 
-        for (Setting setting : SettingsManager.getSettings(module)) {
+        for (Setting<?> setting : SettingsManager.getSettings(module)) {
 
             SettingButton settingButton;
 
             if (setting.getValue() instanceof Boolean) {
 
                 //set the setting button
-                settingButton = new BoolButton(moduleButton, module, setting, X, Y + (boost * H), W, H, false);
+                settingButton = new BoolButton(moduleButton, module, setting, X, Y + (boost * H), W, H);
                 buttons.add(settingButton);
 
             }
             if (setting.getValue() instanceof String) {
 
                 //set the setting button
-                settingButton = new ModeButton(moduleButton, module, setting, X, Y + (boost * H), W, H, false);
+                settingButton = new ModeButton(moduleButton, module, setting, X, Y + (boost * H), W, H);
                 buttons.add(settingButton);
 
             }
@@ -86,7 +83,7 @@ public class Dropdown {
             button.setY(Y + (boost * H));
             button.render(matrices, mX, mY);
             button.update();
-            Window.counter1[0] = Window.counter1[0] + 1;
+            Window.buttonCounter[0] = Window.buttonCounter[0] + 1;
 
             modY = boost;
         }
@@ -97,40 +94,28 @@ public class Dropdown {
         buttons.forEach(settingButton -> settingButton.mouseDown(mX, mY, mB));
     }
 
-    public void mouseUp(int mX, int mY)
-    {
+    public void mouseUp(int mX, int mY) {
         buttons.forEach(settingButton -> settingButton.mouseUp(mX, mY));
     }
 
-    public void keyPress(int key)
-    {
-        for (SettingButton settingButton : buttons)
-        {
-            settingButton.keyPress(key);
-        }
+    public void keyPress(int key) {
+        buttons.forEach(settingButton -> settingButton.keyPress(key));
     }
 
-    public void close()
-    {
-        for (SettingButton button : buttons)
-        {
-            button.close();
-        }
+    public void close() {
+        buttons.forEach(SettingButton::close);
     }
 
-    public void setX(double x)
-    {
+    public void setX(double x) {
         X = x;
     }
 
-    public void setY(double y)
-    {
+    public void setY(double y) {
         Y = y;
     }
 
     //Returns boost multiplied by the height. Used for adding to the main height.
-    public double getBoost()
-    {
+    public double getBoost() {
         ///return (int)(moduleButton.getDropdownProgressPercentage() * (modY*H))/100;
         return modY*H;
     }

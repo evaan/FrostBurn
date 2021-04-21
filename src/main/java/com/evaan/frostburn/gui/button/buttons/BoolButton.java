@@ -13,8 +13,8 @@ public class BoolButton extends SettingButton implements Wrapper
 {
 	private final Setting setting;
 
-	public BoolButton(ModuleButton parent, Module module, Setting setting, double X, double Y, double W, double H, boolean light) {
-		super(parent, module, X, Y, W, H, light);
+	public BoolButton(ModuleButton parent, Module module, Setting<?> setting, double X, double Y, double W, double H) {
+		super(parent, module, X, Y, W, H);
 		this.setting = setting;
 	}
 
@@ -32,7 +32,7 @@ public class BoolButton extends SettingButton implements Wrapper
 	}
 
 	@Override
-	public Setting getValue(){
+	public Setting<?> getValue(){
 		return setting;
 	}
 
