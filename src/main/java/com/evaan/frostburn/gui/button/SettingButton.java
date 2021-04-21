@@ -20,14 +20,9 @@ public class SettingButton implements Wrapper
 	private Module module;
 	private double X;
 	private double Y;
-	private int subsCount = 0;
+	public boolean isLight;
 
-
-	public boolean hidden;
-	public boolean open;
-	public boolean isSUB;
-
-	public SettingButton(ModuleButton parent, Module module, double x, double y, double w, double h, boolean isSub)
+	public SettingButton(ModuleButton parent, Module module, double x, double y, double w, double h, boolean light)
 	{
 		this.module = module;
 		X = x;
@@ -35,8 +30,7 @@ public class SettingButton implements Wrapper
 		W = w;
 		H = h;
 
-		isSUB = isSub;
-
+		isLight = light;
 	}
 
 	public void update() {
@@ -94,27 +88,8 @@ public class SettingButton implements Wrapper
 		this.module = module;
 	}
 
-	public SettingButton getSelf()
-	{
+	public SettingButton getSelf() {
 		return this;
-	}
-
-	public SettingButton getType()
-	{
-		return this;
-	}
-
-	public static ArrayList<SettingButton> getSubButtons()
-	{
-		return subButtons;
-	}
-
-	public void countSub(){
-		subsCount++;
-	}
-
-	public int getSubCount(){
-		return subsCount;
 	}
 
 	public double getX() {
