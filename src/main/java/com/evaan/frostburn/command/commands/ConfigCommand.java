@@ -1,7 +1,7 @@
 package com.evaan.frostburn.command.commands;
 
 import com.evaan.frostburn.command.Command;
-import com.evaan.frostburn.settings.ConfigManager;
+import com.evaan.frostburn.util.ConfigManager;
 
 public class ConfigCommand extends Command {
 
@@ -12,11 +12,14 @@ public class ConfigCommand extends Command {
     @Override
     public void onCommand(String[] args) {
     	if (args.length == 1) {
-            sendMessage("Usage: config <Config Name>");
+            sendMessage("Usage: config <save/load> <Config Name>");
             return;
         }
-    	
-    	ConfigManager.loadConfig(args[1]);
-    	sendMessage("Loaded config named " + args[1]);
+
+    	if (args[1].equalsIgnoreCase("save")) {
+    	    ConfigManager.save(args[2]);
+        } else if (args[1].equalsIgnoreCase("load")) {
+            ConfigManager.load(args[2]);
+        } else sendMessage("Usage: <save/load> <Config Name>");
     }
 }

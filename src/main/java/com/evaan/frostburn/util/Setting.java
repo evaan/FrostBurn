@@ -11,13 +11,14 @@ import java.util.ArrayList;
 public class Setting<T> {
     String name;
     Module parent;
-    T value, min, max;
+    T value, min, max, defaultVal;
     ArrayList<T> options;
     Type type;
 
     public String getName() {return name;}
     public Module getParent() {return parent;}
     public T getValue() {return value;}
+    public T getDefaultVal() {return defaultVal;}
     public T getMin() {return min;}
     public T getMax() {return max;}
     public ArrayList<T> getOptions() {return options;}
@@ -29,6 +30,7 @@ public class Setting<T> {
         this.name = name;
         this.parent = parent;
         this.value = value;
+        this.defaultVal = value;
         this.type = Type.BOOLEAN;
     }
 
@@ -36,15 +38,18 @@ public class Setting<T> {
         this.name = name;
         this.parent = parent;
         this.value = value;
+        this.defaultVal = value;
         this.min = min;
         this.max = max;
-        this.type = Type.FLOAT;
+        if (value instanceof Float) this.type = Type.FLOAT;
+        else this.type = Type.INTEGER;
     }
 
     public Setting(String name, Module parent, ArrayList<T> options, T value) {
         this.name = name;
         this.parent = parent;
         this.value = value;
+        this.defaultVal = value;
         this.options = options;
         this.type = Type.STRING;
     }
@@ -59,5 +64,5 @@ public class Setting<T> {
         return null;
     }
 
-    public enum Type {BOOLEAN, FLOAT, STRING}
+    public enum Type {BOOLEAN, FLOAT, INTEGER, STRING}
 }

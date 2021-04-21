@@ -12,7 +12,7 @@ public class YawLock extends Module {
 
     @Override
     public void onEnable() {
-        yaw = register(new Setting("yaw", this, 0, 0, 7));
+        yaw = register(new Setting("yaw", this, 0f, 0f, 7f));
     }
 
     @Override

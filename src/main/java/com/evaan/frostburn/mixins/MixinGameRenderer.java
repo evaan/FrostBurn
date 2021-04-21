@@ -18,6 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinGameRenderer {
     @Inject(at = @At("HEAD"), method = "renderHand", cancellable = true)
     private void renderHand(MatrixStack matrixStack_1, Camera camera, float tickDelta, CallbackInfo info) {
-        ModuleManager.modules.stream().filter(Module::isEnabled).forEach(Module::onRender);
+        ModuleManager.modules.stream().filter(Module::isEnabled).forEach(module -> {module.onRender(matrixStack_1);});
     }
 }

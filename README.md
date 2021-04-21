@@ -6,6 +6,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
   - [x] Friends
   - [x] Settings
   - [ ] ClickGUI
+  - [ ] HUD
   - [ ] Render Modules
     - [ ] Chams
     - [x] Fullbright
@@ -16,19 +17,19 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] ViewmodelChanger
     - [x] Zoom
   - [ ] Combat Modules
-    - [x] AutoAnchor
+    - [x] AutoAnchor (To be rewritten)
     - [ ] AutoAnvil
     - [x] AutoTotem
     - [x] BedAura
-    - [x] Burrow
-    - [x] Criticals 
-    - [x] CrystalAura (Missing Place)
+    - [ ] Burrow
+    - [x] Criticals
+    - [x] CrystalAura (To be rewritten)
     - [x] KillAura
     - [ ] PistonAura
     - [x] Surround
   - [ ] Misc Modules
     - [x] AirPlace
-    - [x] AntiAim
+    - [ ] AntiAim
     - [x] AutoStaircase
     - [ ] AutoTool
     - [x] DiscordRPC
@@ -41,10 +42,10 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [ ] Timer
     - [x] Yawlock
   - [ ] Movement Modules
-    - [x] BoatFly
-    - [x] Fly
+    - [ ] BoatFly
+    - [ ] Fly
     - [x] Jesus
     - [ ] ReverseStep
     - [x] Sprint
-    - [x] Step
+    - [ ] Step
     - [x] Velocity

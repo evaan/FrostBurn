@@ -27,29 +27,6 @@ public class MixinPlayerEntity {
         ClientPlayerEntity player = FrostBurn.mc.player;
         if (player == null) return;
 
-        if(ModuleManager.getModule("Fly").isEnabled()) {
-            GameOptions options = FrostBurn.mc.options;
-            if (options == null) return;
-
-            Boolean jump = options.keyJump.isPressed();
-            Boolean sneak = options.keySneak.isPressed();
-
-            Vec3d orig = player.getVelocity();
-            double fx, fz;
-            fx = orig.x;
-            fz = orig.z;
-
-            // Set calculated velocity with appropriate Y
-            if (jump && !sneak) {
-                player.setVelocity(new Vec3d(fx, 0.5, fz));
-            } else if (sneak && !jump) {
-                player.setVelocity(new Vec3d(fx, -0.5, fz));
-            } else {
-                player.setVelocity(new Vec3d(fx, 0, fz));
-            }
-        }
-
-
         // Negate fall damage
         if(ModuleManager.getModule("NoFall").isEnabled()) {
             PlayerMoveC2SPacket packet = new PlayerMoveC2SPacket(true);

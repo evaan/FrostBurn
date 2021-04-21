@@ -29,9 +29,9 @@ public class Offhand extends Module {
             new Setting(
                     "TotemSwapHealth",
                     this,
-                    12,
-                    0,
-                    36
+                    12f,
+                    0f,
+                    36f
             )
     );
     Setting<Boolean> offhandCrystal = register(

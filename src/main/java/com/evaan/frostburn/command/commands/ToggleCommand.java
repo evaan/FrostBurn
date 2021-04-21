@@ -3,7 +3,7 @@ package com.evaan.frostburn.command.commands;
 import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
-import com.evaan.frostburn.settings.ConfigManager;
+import com.evaan.frostburn.util.ConfigManager;
 
 /**
  * @Author evaan
@@ -24,7 +24,6 @@ public class ToggleCommand extends Command {
         Module module = ModuleManager.getModule(args[1]);
         if(module != null) {
         	module.toggle();
-            ConfigManager.setValue(args[1].toLowerCase() + ".enabled", String.valueOf(module.isEnabled()));
         } else sendMessage("Module not found!");
     }
 }

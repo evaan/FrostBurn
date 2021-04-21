@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
  * @Author evaan
  * https://github.com/evaan
  */
+
+//todo unchinese
 public class AutoAnchor extends Module {
     public AutoAnchor() {super("AutoAnchor", Category.COMBAT);}
     Setting<Float> range = register(new Setting("Range", this, 4.0f, 0.1f, 5.0f));

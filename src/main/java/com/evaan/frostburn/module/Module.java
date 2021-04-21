@@ -5,6 +5,7 @@ import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.util.Setting;
 import com.evaan.frostburn.util.SettingsManager;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
 
 import java.awt.*;
@@ -71,12 +72,16 @@ public class Module {
     
     public void onUpdate() {}
     
-    public void onRender() {}
-    
+    public void onRender(MatrixStack matrices) {}
+
+    public void onRender1(MatrixStack matrices) {}
+
     public void toggle() {
     	if (enabled) disable(); 
     	else enable();
     }
+
+    public String getHudInfo() {return "";}
     
     public void enable() {
     	enabled = true; 

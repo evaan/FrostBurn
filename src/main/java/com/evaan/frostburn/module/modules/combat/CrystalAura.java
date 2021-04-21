@@ -6,6 +6,7 @@ import net.minecraft.entity.decoration.EndCrystalEntity;
 
 import java.util.stream.Collectors;
 
+//todo skid some ca because im too lazy to
 public class CrystalAura extends Module {
 
 	public CrystalAura() { super("CrystalAura", Category.COMBAT); }
