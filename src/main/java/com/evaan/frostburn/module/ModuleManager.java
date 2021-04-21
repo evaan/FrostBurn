@@ -18,6 +18,7 @@ public class ModuleManager {
     public static void init() {
         modules = new ArrayList<>();
 
+        modules.add(new NewGui());
         modules.add(new AirPlace());
         modules.add(new MiddleClickPearl());
         modules.add(new MiddleClickFriend());

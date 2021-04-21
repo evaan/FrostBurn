@@ -54,5 +54,15 @@ public class Setting<T> {
         this.type = Type.STRING;
     }
 
+    public String getCorrectString(String stringIn) {
+        if (this.value instanceof String) {
+            for (String s : (ArrayList<String>) options) {
+                if (s.equalsIgnoreCase(stringIn)) return s;
+            }
+            return null;
+        }
+        return null;
+    }
+
     public enum Type {BOOLEAN, FLOAT, INTEGER, STRING}
 }
