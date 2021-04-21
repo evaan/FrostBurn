@@ -82,7 +82,6 @@ public class Dropdown {
 
         for (SettingButton button : buttons){
             ++boost;
-            //add visibility thingy here
             button.setX(X);
             button.setY(Y + (boost * H));
             button.render(matrices, mX, mY);
@@ -94,20 +93,13 @@ public class Dropdown {
 
     }
 
-    public void mouseDown(int mX, int mY, int mB)
-    {
-        for (SettingButton settingButton : buttons)
-        {
-            settingButton.mouseDown(mX, mY, mB);
-        }
+    public void mouseDown(int mX, int mY, int mB) {
+        buttons.forEach(settingButton -> settingButton.mouseDown(mX, mY, mB));
     }
 
     public void mouseUp(int mX, int mY)
     {
-        for (SettingButton settingButton : buttons)
-        {
-            settingButton.mouseUp(mX, mY);
-        }
+        buttons.forEach(settingButton -> settingButton.mouseUp(mX, mY));
     }
 
     public void keyPress(int key)

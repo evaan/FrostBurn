@@ -11,15 +11,14 @@ import java.awt.*;
 
 /**
  * @author Gopro336
- * @since 2/18/2021
  */
 public class ModeButton extends SettingButton implements Wrapper
 {
 	private final Setting setting;
 
-	public ModeButton(ModuleButton parent, Module module, Setting setting, double X, double Y, double W, double H, Boolean isSub)
+	public ModeButton(ModuleButton parent, Module module, Setting setting, double X, double Y, double W, double H, boolean light)
 	{
-		super(parent, module, X, Y, W, H, isSub);
+		super(parent, module, X, Y, W, H, light);
 		this.setting = setting;
 	}
 
