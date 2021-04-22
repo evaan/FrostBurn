@@ -5,7 +5,7 @@ A 1.16.5 utility mod oriented towards anarchy servers
   - [x] Module System
   - [x] Friends
   - [x] Settings
-  - [ ] ClickGUI
+  - [ ] ClickGUI (Missing some few final touches)
   - [ ] HUD
   - [ ] Render Modules
     - [ ] Chams

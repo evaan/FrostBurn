@@ -2,6 +2,7 @@ package com.evaan.frostburn.clickgui.button;
 
 import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.module.Module;
+import com.evaan.frostburn.module.modules.render.ClickGuiMod;
 import com.evaan.frostburn.util.Setting;
 import com.evaan.frostburn.util.Wrapper;
 import net.minecraft.client.util.math.MatrixStack;
@@ -51,7 +52,7 @@ public class SettingButton implements Wrapper
 
 	public void drawButton(MatrixStack matrices, int mX, int mY)
 	{
-		FrostBurn.clickGUI.drawGradient(matrices, X, Y, X + W , Y + H, new Color(218, 218, 218, 232).getRGB(), new Color(218, 218, 218, 232).getRGB());
+		FrostBurn.clickGUI.drawGradient(matrices, X, Y, X + W , Y + H, new Color(ClickGuiMod.clickGuiMod.bgR.getValue(), ClickGuiMod.clickGuiMod.bgG.getValue(), ClickGuiMod.clickGuiMod.bgB.getValue(), ClickGuiMod.clickGuiMod.bgA.getValue()).getRGB(), new Color(ClickGuiMod.clickGuiMod.bgR.getValue(), ClickGuiMod.clickGuiMod.bgG.getValue(), ClickGuiMod.clickGuiMod.bgB.getValue(), ClickGuiMod.clickGuiMod.bgA.getValue()).getRGB());
 
 		if (isHover(getX(), getY(), getW(), getH() - 1, mX, mY)) {
 			FrostBurn.clickGUI.drawGradient(matrices, X, Y, X + W , Y + H, new Color(140, 140, 140, 110).getRGB(), new Color(140, 140, 140, 110).getRGB());

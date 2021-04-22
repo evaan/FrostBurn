@@ -39,20 +39,20 @@ public class SettingCommand extends Command {
                     Command.sendMessage("Set " + setting.getName() + " to " + args[3]);
                     break;
                 case FLOAT:
-                    if ((float)setting.getMin() < Float.parseFloat(args[3]) || (float)setting.getMax() > Float.parseFloat(args[3])) {
+                    if ((float)setting.getMin() > Float.parseFloat(args[3]) || (float)setting.getMax() < Float.parseFloat(args[3])) {
                         Command.sendMessage("Min: " + setting.getMin() + ", Max: " + setting.getMax());
                         break;
                     }
                     setting.setValue(Float.valueOf(args[3]));
-                    System.out.println("Set " + setting.getName() + "to " + args[3]);
+                    Command.sendMessage("Set " + setting.getName() + " to " + args[3]);
                     break;
                 case INTEGER:
-                    if ((int)setting.getMin() < Integer.parseInt(args[3]) || (int)setting.getMax() > Integer.parseInt(args[3])) {
+                    if ((int)setting.getMin() > Integer.parseInt(args[3]) || (int)setting.getMax() < Integer.parseInt(args[3])) {
                         Command.sendMessage("Min: " + setting.getMin() + ", Max: " + setting.getMax());
                         break;
                     }
-                    setting.setValue(Float.valueOf(args[3]));
-                    System.out.println("Set " + setting.getName() + "to " + args[3]);
+                    setting.setValue(Integer.parseInt(args[3]));
+                    Command.sendMessage("Set " + setting.getName() + " to " + args[3]);
                     break;
                 case STRING:
                     System.out.println("STRING " + args[3]);
@@ -60,7 +60,7 @@ public class SettingCommand extends Command {
                     // If the options list is empty, we also allow the setting of the value
                     if (setting.getOptions().contains(args[3]) || setting.getOptions().isEmpty()) {
                         setting.setValue(args[3]);
-                        System.out.println("Set " + setting.getName() + "to " + args[3]);
+                        Command.sendMessage("Set " + setting.getName() + " to " + args[3]);
                     } else {
                         sendMessage(args[3] + " not found in options!");
                         return;

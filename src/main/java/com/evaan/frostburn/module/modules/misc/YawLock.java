@@ -2,82 +2,26 @@ package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.util.Setting;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.command.argument.EntityAnchorArgumentType;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 
 public class YawLock extends Module {
     public YawLock() {super("YawLock", Category.MISC);}
 
-    Setting<Float> yaw;
-
     @Override
     public void onEnable() {
-        yaw = register(new Setting("yaw", this, 0f, 0f, 7f));
+        if (mc.player == null) {disable(); return;}
     }
 
     @Override
-    public void onUpdate() {
-        if (mc.player == null || mc.world == null) {
-            disable();
-            return;
-        }
-
-        if (yaw.getValue() == 0f) {
-            mc.player.lookAt(
-                    EntityAnchorArgumentType.EntityAnchor.EYES,
-                    new Vec3d(
-                            mc.player.getX(),
-                            mc.player.getEyeY(),
-                            mc.player.getZ() - 1));
-        } else if (yaw.getValue() == 1f) {
-            mc.player.lookAt(
-                    EntityAnchorArgumentType.EntityAnchor.EYES,
-                    new Vec3d(
-                            mc.player.getX() + 1,
-                            mc.player.getEyeY(),
-                            mc.player.getZ() - 1));
-        } else if (yaw.getValue() == 2f) {
-            mc.player.lookAt(
-                    EntityAnchorArgumentType.EntityAnchor.EYES,
-                    new Vec3d(
-                            mc.player.getX() + 1,
-                            mc.player.getEyeY(),
-                            mc.player.getZ()));
-        } else if (yaw.getValue() == 3f) {
-            mc.player.lookAt(
-                    EntityAnchorArgumentType.EntityAnchor.EYES,
-                    new Vec3d(
-                            mc.player.getX() + 1,
-                            mc.player.getEyeY(),
-                            mc.player.getZ() + 1));
-        } else if (yaw.getValue() == 4f) {
-            mc.player.lookAt(
-                    EntityAnchorArgumentType.EntityAnchor.EYES,
-                    new Vec3d(
-                            mc.player.getX(),
-                            mc.player.getEyeY(),
-                            mc.player.getZ() + 1));
-        } else if (yaw.getValue() == 5f) {
-            mc.player.lookAt(
-                    EntityAnchorArgumentType.EntityAnchor.EYES,
-                    new Vec3d(
-                            mc.player.getX() - 1,
-                            mc.player.getEyeY(),
-                            mc.player.getZ() + 1));
-        } else if (yaw.getValue() == 6f) {
-            mc.player.lookAt(
-                    EntityAnchorArgumentType.EntityAnchor.EYES,
-                    new Vec3d(
-                            mc.player.getX() - 1,
-                            mc.player.getEyeY(),
-                            mc.player.getZ()));
-        } else if (yaw.getValue() == 7f) {
-            mc.player.lookAt(
-                    EntityAnchorArgumentType.EntityAnchor.EYES,
-                    new Vec3d(
-                            mc.player.getX() - 1,
-                            mc.player.getEyeY(),
-                            mc.player.getZ() - 1));
+    public void onRender(MatrixStack matrices) {
+        switch (mc.player.getHorizontalFacing()) {
+            case SOUTH: mc.player.yaw = 0; break;
+            case EAST: mc.player.yaw = 270; break;
+            case NORTH: mc.player.yaw = 180; break;
+            case WEST: mc.player.yaw = 90; break;
         }
     }
 }

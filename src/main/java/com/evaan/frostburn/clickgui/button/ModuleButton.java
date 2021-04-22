@@ -3,6 +3,7 @@ package com.evaan.frostburn.clickgui.button;
 import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.clickgui.Dropdown;
 import com.evaan.frostburn.module.Module;
+import com.evaan.frostburn.module.modules.render.ClickGuiMod;
 import com.evaan.frostburn.util.Wrapper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Quaternion;
@@ -41,13 +42,13 @@ public class ModuleButton implements Wrapper
 
 	public void render(MatrixStack matrices, int mX, int mY)
 	{
-		FrostBurn.clickGUI.drawGradient(matrices, X, Y, X + W , Y + H, new Color(218, 218, 218, 232).getRGB(), new Color(218, 218, 218, 232).getRGB());
+		FrostBurn.clickGUI.drawGradient(matrices, X, Y, X + W , Y + H, new Color(ClickGuiMod.clickGuiMod.bgR.getValue(), ClickGuiMod.clickGuiMod.bgG.getValue(), ClickGuiMod.clickGuiMod.bgB.getValue(), ClickGuiMod.clickGuiMod.bgA.getValue()).getRGB(), new Color(ClickGuiMod.clickGuiMod.bgR.getValue(), ClickGuiMod.clickGuiMod.bgG.getValue(), ClickGuiMod.clickGuiMod.bgB.getValue(), ClickGuiMod.clickGuiMod.bgA.getValue()).getRGB());
 
 		if (module.isEnabled()) {
-			Wrapper.textRenderer.draw(matrices, module.getName(), (float) (X + 5), (float) (Y + 4), new Color(30, 30, 216, 232).getRGB());
+			Wrapper.textRenderer.draw(matrices, module.getName(), (float) (X + 5), (float) (Y + 4), new Color(new Color(ClickGuiMod.clickGuiMod.textAltR.getValue(), ClickGuiMod.clickGuiMod.textAltG.getValue(), ClickGuiMod.clickGuiMod.textAltB.getValue(), ClickGuiMod.clickGuiMod.textAltA.getValue()).getRGB()).getRGB());
 		}
 		else {
-			Wrapper.textRenderer.draw(matrices, module.getName(), (float) (X + 5), (float) (Y + 4), new Color(30, 30, 30).getRGB());
+			Wrapper.textRenderer.draw(matrices, module.getName(), (float) (X + 5), (float) (Y + 4), new Color(ClickGuiMod.clickGuiMod.textR.getValue(), ClickGuiMod.clickGuiMod.textG.getValue(), ClickGuiMod.clickGuiMod.textB.getValue(), ClickGuiMod.clickGuiMod.textA.getValue()).getRGB());
 		}
 
 		if (isHover(X, Y, W, H - 1, mX, mY)) {
@@ -59,11 +60,11 @@ public class ModuleButton implements Wrapper
 			matrixStack.translate(X + H/2, Y + H/2, 0);
 			rotate(90,0, 0,1);
 			matrixStack.translate(-(X + H/2), -(Y + H/2), 0);
-			textRenderer.draw(matrices, ("..."), (float) ((X + W - 3) - Wrapper.textRenderer.getWidth("...")), (float) (Y + 4), new Color(30, 30, 30).getRGB());
+			textRenderer.draw(matrices, ("..."), (float) ((X + W - 3) - Wrapper.textRenderer.getWidth("...")), (float) (Y + 4), new Color(ClickGuiMod.clickGuiMod.textR.getValue(), ClickGuiMod.clickGuiMod.textG.getValue(), ClickGuiMod.clickGuiMod.textB.getValue(), ClickGuiMod.clickGuiMod.textA.getValue()).getRGB());
 			matrixStack.pop();
 		}
 		else {
-			textRenderer.draw(matrices, ("..."), (float) ((X + W - 3) - Wrapper.textRenderer.getWidth("...")), (float) (Y + 4), new Color(30, 30, 30).getRGB());
+			textRenderer.draw(matrices, ("..."), (float) ((X + W - 3) - Wrapper.textRenderer.getWidth("...")), (float) (Y + 4), new Color(ClickGuiMod.clickGuiMod.textR.getValue(), ClickGuiMod.clickGuiMod.textG.getValue(), ClickGuiMod.clickGuiMod.textB.getValue(), ClickGuiMod.clickGuiMod.textA.getValue()).getRGB());
 		}
 
 	}

@@ -4,6 +4,7 @@ import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.clickgui.button.ModuleButton;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
+import com.evaan.frostburn.module.modules.render.ClickGuiMod;
 import com.evaan.frostburn.util.Wrapper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
@@ -64,7 +65,7 @@ public class Window implements Wrapper {
         }
 
         //draw top bar
-        FrostBurn.clickGUI.drawGradient(matrices, X, Y, X + W, Y + H, new Color(218, 218, 218, 232).getRGB(), new Color(218, 218, 218, 232).getRGB());//119
+        FrostBurn.clickGUI.drawGradient(matrices, X, Y, X + W, Y + H, new Color(ClickGuiMod.clickGuiMod.bgR.getValue(), ClickGuiMod.clickGuiMod.bgG.getValue(), ClickGuiMod.clickGuiMod.bgB.getValue(), ClickGuiMod.clickGuiMod.bgA.getValue()).getRGB(), new Color(ClickGuiMod.clickGuiMod.bgR.getValue(), ClickGuiMod.clickGuiMod.bgG.getValue(), ClickGuiMod.clickGuiMod.bgB.getValue(), ClickGuiMod.clickGuiMod.bgA.getValue()).getRGB());//119
 
         //draw title string
         textRenderer.draw(matrices, new LiteralText(category.getName()), (float)X + 4, (float)Y + 4, new Color(30, 30, 30).getRGB());
