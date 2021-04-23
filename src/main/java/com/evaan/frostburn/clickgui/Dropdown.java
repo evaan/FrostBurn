@@ -2,6 +2,7 @@ package com.evaan.frostburn.clickgui;
 
 import com.evaan.frostburn.clickgui.button.ModuleButton;
 import com.evaan.frostburn.clickgui.button.SettingButton;
+import com.evaan.frostburn.clickgui.button.buttons.BindButton;
 import com.evaan.frostburn.clickgui.button.buttons.BoolButton;
 import com.evaan.frostburn.clickgui.button.buttons.ModeButton;
 import com.evaan.frostburn.module.Module;
@@ -68,9 +69,9 @@ public class Dropdown {
                 buttons.add(settingButton);
 
             }*/
-
-            //add bind button
         }
+
+        buttons.add(new BindButton(moduleButton, module, X, Y + (boost * H), W, H));
     }
 
     public void render(MatrixStack matrices, int mX, int mY) {

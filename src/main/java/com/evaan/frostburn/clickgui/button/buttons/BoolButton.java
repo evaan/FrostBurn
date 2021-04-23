@@ -39,7 +39,6 @@ public class BoolButton extends SettingButton implements Wrapper
 
 	@Override
 	public void mouseDown(int mX, int mY, int mB) {
-		if (!isHover(getX(), getY(), getW(), getH() - 1, mX, mY)) return;
-		setting.setValue(!(boolean)setting.getValue());
+		if (isHover(getX(), getY(), getW(), getH() - 1, mX, mY) && mB == 0) setting.setValue(!(boolean)setting.getValue());
 	}
 }

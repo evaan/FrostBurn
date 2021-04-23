@@ -20,8 +20,6 @@ public class ModuleManager {
 
         modules.add(new ClickGuiMod());
         modules.add(new AirPlace());
-        modules.add(new MiddleClickPearl());
-        modules.add(new MiddleClickFriend());
         modules.add(new Surround());
         modules.add(new KillAura());
         modules.add(new AutoAnchor());
@@ -47,6 +45,7 @@ public class ModuleManager {
         modules.add(new Nuker());
         modules.add(new HUD());
         modules.add(new CleanChat());
+        modules.add(new MiddleClick());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }

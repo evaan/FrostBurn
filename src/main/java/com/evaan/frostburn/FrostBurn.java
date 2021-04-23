@@ -11,6 +11,8 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.minecraft.client.MinecraftClient;
 
+import java.io.File;
+
 /**
  * @Author evaan
  * https://github.com/evaan
@@ -28,6 +30,7 @@ public class FrostBurn implements ModInitializer {
 		ModuleManager.init();
 		CommandManager.init();
 		clickGUI = new ClickGui();
+		if (new File(MinecraftClient.getInstance().runDirectory + File.separator + "FrostBurn" + File.separator + "default.xml").exists()) ConfigManager.load("default");
 		System.out.println("███████╗██████╗░░█████╗░░██████╗████████╗██████╗░██╗░░░██╗██████╗░███╗░░██╗");
 		System.out.println("██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║░░░██║██╔══██╗████╗░██║");
 		System.out.println("█████╗░░██████╔╝██║░░██║╚█████╗░░░░██║░░░██████╦╝██║░░░██║██████╔╝██╔██╗██║");
@@ -36,8 +39,6 @@ public class FrostBurn implements ModInitializer {
 		System.out.println("╚═╝░░░░░╚═╝░░╚═╝░╚════╝░╚═════╝░░░░╚═╝░░░╚═════╝░░╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝");
 		System.out.println("FrostBurn has been initialized!");
 		System.out.println("https://github.com/evaan/frostburn");
-
-		ConfigManager.load("default");
 
 		ClientLifecycleEvents.CLIENT_STOPPING.register((minecraftClient) -> {
 			ConfigManager.save("default");

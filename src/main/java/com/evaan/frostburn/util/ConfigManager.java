@@ -24,6 +24,7 @@ public class ConfigManager {
 
 	public static void save(String name) {
 		try {
+			System.out.println("Saving config " + name + ".");
 			prepare(name);
 			for (Module module : ModuleManager.modules) {
 				config.setProperty(module.getName() + ".enabled", String.valueOf(module.isEnabled()));
@@ -38,6 +39,7 @@ public class ConfigManager {
 
 	public static void load(String name) {
 		try {
+			System.out.println("Loading config " + name + ".");
 			prepare(name);
 			config.loadFromXML(new FileInputStream(configFile));
 			for (Module module : ModuleManager.modules) {
@@ -63,7 +65,7 @@ public class ConfigManager {
 					}
 				}
 			}
-		} catch (Exception ignored) {ignored.printStackTrace();}
+		} catch (Exception e) {e.printStackTrace();}
 	}
 }
 	

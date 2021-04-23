@@ -22,7 +22,7 @@ public class AirPlace extends Module {
 
     @Override
     public void onUpdate() {
-        if (mc.crosshairTarget instanceof BlockHitResult || mc.player.getMainHandStack().getItem() instanceof BlockItem) {
+        if (mc.crosshairTarget instanceof BlockHitResult && mc.player.getMainHandStack().getItem() instanceof BlockItem) {
 
             try {
                 placePos = ((BlockHitResult) mc.crosshairTarget).getBlockPos();

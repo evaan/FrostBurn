@@ -1,5 +1,6 @@
 package com.evaan.frostburn.clickgui;
 
+import com.evaan.frostburn.clickgui.button.ModuleButton;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import com.evaan.frostburn.util.Keyboard;
@@ -7,6 +8,7 @@ import com.evaan.frostburn.util.Wrapper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
+import net.minecraft.util.Pair;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class ClickGui extends Screen implements Wrapper {
 
     public static ArrayList<Window> windows;
+    public static Pair<Boolean, ModuleButton> isBinding = new Pair<>(false, null);
 
     public ClickGui() {
         super(new LiteralText("ClickGui"));
