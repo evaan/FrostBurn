@@ -49,3 +49,8 @@ A 1.16.5 utility mod oriented towards anarchy servers
     - [x] Sprint
     - [ ] Step
     - [x] Velocity
+## Donating
+If you'd like to donate I accept Bitcoin and Ethereum  
+Bitcoin: bc1qrv2f3phudk867xdu6mdl640pc4zmjzsrflegx9  
+Ethereum: 0x49DDF5527a0212BC7a7AB8121eD152d15f69229E  
+If you do donate, let me know and I'll give you cape or something idk
