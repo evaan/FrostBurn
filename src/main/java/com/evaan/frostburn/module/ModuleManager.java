@@ -46,6 +46,7 @@ public class ModuleManager {
         modules.add(new HUD());
         modules.add(new CleanChat());
         modules.add(new MiddleClick());
+        modules.add(new ImGuiMod());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
