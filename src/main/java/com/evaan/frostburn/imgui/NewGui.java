@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
+import com.evaan.frostburn.util.Setting;
 import imgui.ImGui;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
@@ -26,6 +27,7 @@ public class NewGui extends Screen {
     private final ImGuiImplGl3 implGl3 = new ImGuiImplGl3();
 
     private HashMap<Module, ImBoolean> enabledMap = new HashMap<>();
+    private HashMap<Setting, Object> settingsMap = new HashMap<>();
 
     public NewGui() {
         super(new LiteralText("FrostBurn ClickGui"));
@@ -47,6 +49,9 @@ public class NewGui extends Screen {
         for (Module module : ModuleManager.modules) {
             if (module.getName().equalsIgnoreCase("imgui") || module.getName().equalsIgnoreCase("clickgui")) continue;
             enabledMap.put(module, new ImBoolean(module.isEnabled()));
+            for (Setting setting : module.settings) {
+                if (setting.getType() == Setting.Type.BOOLEAN) settingsMap.put(setting, new ImBoolean((Boolean) setting.getValue()));
+            }
         }
         for (Module.Category category : Module.Category.values()) {
             ImGui.begin(category.getName());
@@ -54,6 +59,14 @@ public class NewGui extends Screen {
                 if (module.getName().equalsIgnoreCase("imgui") || module.getName().equalsIgnoreCase("clickgui")) continue;
                 ImGui.checkbox(module.getName(), enabledMap.get(module));
                 if (enabledMap.get(module).get() != module.isEnabled()) module.toggle();
+                if (!module.settings.isEmpty() && ImGui.collapsingHeader(module.getName() + " Settings")) {
+                    for (Setting setting : module.settings) {
+                        if (setting.getType() == Setting.Type.BOOLEAN) {
+                            ImGui.checkbox(setting.getName(), (ImBoolean) settingsMap.get(setting));
+                            if ((boolean)setting.getValue() != ((ImBoolean) settingsMap.get(setting)).get()) setting.setValue(((ImBoolean) settingsMap.get(setting)).get());
+                        }
+                    }
+                }
             }
             ImGui.end();
         }
