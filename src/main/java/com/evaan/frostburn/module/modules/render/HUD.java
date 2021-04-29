@@ -44,6 +44,7 @@ public class HUD extends Module {
 
     @Override
     public void onRender1(MatrixStack matrices) {
+        System.out.println(mc.getWindow().getWidth() + " " + mc.getWindow().getHeight());
         rgb = (rainbow.getValue() ? rgb : new Color(r.getValue(), g.getValue(), b.getValue()).getRGB());
         y=2;
         if (watermark.getValue()) {
@@ -58,13 +59,13 @@ public class HUD extends Module {
         }
         if (arrayList.getValue()) {
             ModuleManager.modules.stream().filter(Module::isEnabled).filter(Module::isDrawn).forEach(module -> {
-                updateRainbow();
+                if (rainbow.getValue()) updateRainbow();
                 mc.textRenderer.drawWithShadow(matrices, module.getName() + " " + module.getHudInfo(), 2, y, rgb);
                 y+=10;
             });
         }
         if (coords.getValue()) {
-            updateRainbow();
+            if (rainbow.getValue()) updateRainbow();
             if (mc.player == null) return;
             DecimalFormat format = new DecimalFormat("0.#");
             if (mc.world.getRegistryKey().getValue().getPath().equalsIgnoreCase("the_nether")) mc.textRenderer.drawWithShadow(matrices, format.format(mc.player.getX()) + Formatting.WHITE + ", " + Formatting.RESET + format.format(mc.player.getY()) + Formatting.WHITE + ", " + Formatting.RESET + format.format(mc.player.getZ()) + Formatting.WHITE + " [" + Formatting.RESET + format.format(mc.player.getX()/8) + Formatting.WHITE + ", " + Formatting.RESET + format.format(mc.player.getY()) + Formatting.WHITE + ", " + Formatting.RESET + format.format(mc.player.getZ()/8) + Formatting.WHITE + "]", 2, mc.getWindow().getHeight()-mc.textRenderer.fontHeight-2, rgb);

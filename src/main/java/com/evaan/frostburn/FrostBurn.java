@@ -30,7 +30,7 @@ public class FrostBurn implements ModInitializer {
 		ModuleManager.init();
 		CommandManager.init();
 		clickGUI = new ClickGui();
-		if (new File(MinecraftClient.getInstance().runDirectory + File.separator + "FrostBurn" + File.separator + "default.xml").exists()) ConfigManager.load("default");
+		if (new File(MinecraftClient.getInstance().runDirectory + File.separator + "FrostBurn" + File.separator + "default.json").exists()) ConfigManager.load("default");
 		System.out.println("███████╗██████╗░░█████╗░░██████╗████████╗██████╗░██╗░░░██╗██████╗░███╗░░██╗");
 		System.out.println("██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║░░░██║██╔══██╗████╗░██║");
 		System.out.println("█████╗░░██████╔╝██║░░██║╚█████╗░░░░██║░░░██████╦╝██║░░░██║██████╔╝██╔██╗██║");
