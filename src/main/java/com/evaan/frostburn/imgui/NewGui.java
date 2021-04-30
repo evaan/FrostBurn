@@ -9,6 +9,8 @@ import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import com.evaan.frostburn.util.Setting;
 import imgui.ImGui;
+import imgui.flag.ImGuiCol;
+import imgui.flag.ImGuiStyleVar;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 import imgui.type.ImBoolean;
