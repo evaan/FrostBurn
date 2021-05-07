@@ -1,11 +1,7 @@
 package com.evaan.frostburn.module.modules.misc;
 
 import com.evaan.frostburn.module.Module;
-import com.evaan.frostburn.util.Setting;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.command.argument.EntityAnchorArgumentType;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 
 public class YawLock extends Module {
     public YawLock() {super("YawLock", Category.MISC);}

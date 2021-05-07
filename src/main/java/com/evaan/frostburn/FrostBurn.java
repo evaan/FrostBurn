@@ -1,8 +1,8 @@
 package com.evaan.frostburn;
 
+import com.evaan.frostburn.clickgui.ClickGui;
 import com.evaan.frostburn.command.CommandManager;
 import com.evaan.frostburn.module.ModuleManager;
-import com.evaan.frostburn.clickgui.ClickGui;
 import com.evaan.frostburn.util.ConfigManager;
 import com.evaan.frostburn.util.SettingsManager;
 import me.zero.alpine.EventBus;

@@ -31,13 +31,13 @@
  */
 package com.evaan.frostburn.util;
 
+import org.lwjgl.BufferUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.lwjgl.BufferUtils;
 
 /**
  * <br>

@@ -23,13 +23,14 @@ public class KillAura extends Module {
     Setting<Boolean> switchItem = register(new Setting("Switch", this, true));
     Setting<Boolean> allEntities = register(new Setting("AllEntities", this, true));
     Setting<Boolean> multiAura = register(new Setting("Multi", this, true));
+    Setting<Boolean> spam = register(new Setting("Spam", this, false));
     
     //todo rotate
 
     @Override
     public void onUpdate() {
         if (mc.player == null || mc.world == null) return;
-        if(mc.player.getAttackCooldownProgress(0) < 1) return;
+        if(mc.player.getAttackCooldownProgress(0) < 1 && spam.getValue()) return;
         
         try {
 	    	List<Entity> filtered;

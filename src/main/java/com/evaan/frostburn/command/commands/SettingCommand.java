@@ -3,7 +3,6 @@ package com.evaan.frostburn.command.commands;
 import com.evaan.frostburn.command.Command;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
-import com.evaan.frostburn.util.ConfigManager;
 import com.evaan.frostburn.util.Setting;
 import com.evaan.frostburn.util.SettingsManager;
 

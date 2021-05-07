@@ -4,7 +4,9 @@ import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import net.minecraft.client.MinecraftClient;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
 
 public class ConfigManager {

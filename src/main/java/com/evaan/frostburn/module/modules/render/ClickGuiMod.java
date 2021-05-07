@@ -3,9 +3,6 @@ package com.evaan.frostburn.module.modules.render;
 import com.evaan.frostburn.FrostBurn;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.util.Setting;
-import org.lwjgl.system.CallbackI;
-
-import java.util.ArrayList;
 
 public class ClickGuiMod extends Module {
     public ClickGuiMod() {super("ClickGui", Category.RENDER);}

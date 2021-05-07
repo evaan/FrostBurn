@@ -1,6 +1,6 @@
 package com.evaan.frostburn.module.modules.render;
 
-import com.evaan.frostburn.imgui.NewGui;
+import com.evaan.frostburn.clickgui.ImGuiScreen;
 import com.evaan.frostburn.module.Module;
 
 /**
@@ -12,7 +12,7 @@ public class ImGuiMod extends Module {
 
     @Override
     public void onEnable() {
-        mc.openScreen(new NewGui());
+        mc.openScreen(new ImGuiScreen());
         disable();
     }
 }

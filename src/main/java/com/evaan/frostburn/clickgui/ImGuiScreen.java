@@ -1,16 +1,8 @@
-package com.evaan.frostburn.imgui;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Objects;
+package com.evaan.frostburn.clickgui;
 
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import com.evaan.frostburn.util.Setting;
-import imgui.ImGui;
-import imgui.flag.ImGuiCol;
-import imgui.flag.ImGuiStyleVar;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 import imgui.type.ImBoolean;
@@ -23,8 +15,11 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 
+import java.util.HashMap;
+import java.util.Objects;
+
 @Environment(EnvType.CLIENT)
-public class NewGui extends Screen {
+public class ImGuiScreen extends Screen {
 
     private long windowPtr;
 
@@ -35,10 +30,10 @@ public class NewGui extends Screen {
     private HashMap<Module, ImBoolean> enabledMap = new HashMap<>();
     private HashMap<Setting, Object> settingsMap = new HashMap<>();
 
-    public NewGui() {
+    public ImGuiScreen() {
         super(new LiteralText("FrostBurn ClickGui"));
         windowPtr = MinecraftClient.getInstance().getWindow().getHandle();
-        ImGui.createContext();
+        imgui.ImGui.createContext();
         implGlfw.init(windowPtr, false);
         implGl3.init("#version 150");
 
@@ -74,44 +69,44 @@ public class NewGui extends Screen {
         textRenderer.drawWithShadow(matrices, new LiteralText(Formatting.BLUE+"Frost"+Formatting.RED+"Burn"+Formatting.WHITE+" 1.0 by evaan"), 2, 2, 0xffffff);
         textRenderer.drawWithShadow(matrices, new LiteralText("https://github.com/evaan/FrostBurn"), 2, 12, 0xffffff);
         implGlfw.newFrame();
-        ImGui.newFrame();
+        imgui.ImGui.newFrame();
         for (Module.Category category : Module.Category.values()) {
-            ImGui.begin(category.getName());
+            imgui.ImGui.begin(category.getName());
             for (Module module : ModuleManager.getModulesInCategory(category)) {
                 if (module.getName().equalsIgnoreCase("imgui") || module.getName().equalsIgnoreCase("clickgui"))
                     continue;
-                ImGui.checkbox(module.getName(), enabledMap.get(module));
+                imgui.ImGui.checkbox(module.getName(), enabledMap.get(module));
                 if (enabledMap.get(module).get() != module.isEnabled()) module.toggle();
-                if (!module.settings.isEmpty() && ImGui.collapsingHeader(module.getName() + " Settings")) {
+                if (!module.settings.isEmpty() && imgui.ImGui.collapsingHeader(module.getName() + " Settings")) {
                     for (Setting setting : module.settings) {
                         switch (setting.getType()) {
                             case BOOLEAN:
-                                ImGui.checkbox(setting.getName(), (ImBoolean) settingsMap.get(setting));
+                                imgui.ImGui.checkbox(setting.getName(), (ImBoolean) settingsMap.get(setting));
                                 if ((boolean) setting.getValue() != ((ImBoolean) settingsMap.get(setting)).get())
                                     setting.setValue(((ImBoolean) settingsMap.get(setting)).get());
                                 break;
                             case INTEGER:
-                                ImGui.sliderInt(setting.getName(), (int[]) settingsMap.get(setting), (int) setting.getMin(), (int) setting.getMax());
+                                imgui.ImGui.sliderInt(setting.getName(), (int[]) settingsMap.get(setting), (int) setting.getMin(), (int) setting.getMax());
                                 int[] javaStupid = (int[]) settingsMap.get(setting);
                                 if (javaStupid[0] != (int) setting.getValue()) setting.setValue(javaStupid[0]);
                                 break;
                             case FLOAT:
-                                ImGui.sliderFloat(setting.getName(), (float[]) settingsMap.get(setting), (float) setting.getMin(),(float) setting.getMax());
+                                imgui.ImGui.sliderFloat(setting.getName(), (float[]) settingsMap.get(setting), (float) setting.getMin(),(float) setting.getMax());
                                 float[] javaStupid1 = (float[]) settingsMap.get(setting);
                                 if (javaStupid1[0] != (float) setting.getValue()) setting.setValue(javaStupid1[0]);
                                 break;
                             case STRING:
                                 String[] javaStupid2 = (String[]) setting.getOptions().toArray(new String[setting.getOptions().size()]);
-                                ImGui.combo(setting.getName(), (ImInt) settingsMap.get(setting), javaStupid2);
+                                imgui.ImGui.combo(setting.getName(), (ImInt) settingsMap.get(setting), javaStupid2);
                                 if (((ImInt) settingsMap.get(setting)).get() != setting.getOptions().indexOf(setting.getValue()))
                                     setting.setValue(setting.getOptions().get(((ImInt) settingsMap.get(setting)).get()));
                         }
                     }
                 }
             }
-            ImGui.end();
+            imgui.ImGui.end();
         }
-        ImGui.render();
-        implGl3.renderDrawData(Objects.requireNonNull(ImGui.getDrawData()));
+        imgui.ImGui.render();
+        implGl3.renderDrawData(Objects.requireNonNull(imgui.ImGui.getDrawData()));
     }
 }

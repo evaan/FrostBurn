@@ -3,7 +3,6 @@ package com.evaan.frostburn.clickgui;
 import com.evaan.frostburn.clickgui.button.ModuleButton;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
-import com.evaan.frostburn.util.Keyboard;
 import com.evaan.frostburn.util.Wrapper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;

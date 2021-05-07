@@ -2,8 +2,11 @@ package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.module.modules.combat.*;
 import com.evaan.frostburn.module.modules.misc.*;
+import com.evaan.frostburn.module.modules.movement.Jesus;
+import com.evaan.frostburn.module.modules.movement.NoFall;
+import com.evaan.frostburn.module.modules.movement.SafeWalk;
+import com.evaan.frostburn.module.modules.movement.Sprint;
 import com.evaan.frostburn.module.modules.render.*;
-import com.evaan.frostburn.module.modules.movement.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
