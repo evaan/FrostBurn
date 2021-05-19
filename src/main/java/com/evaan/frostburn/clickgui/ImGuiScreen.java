@@ -3,6 +3,9 @@ package com.evaan.frostburn.clickgui;
 import com.evaan.frostburn.module.Module;
 import com.evaan.frostburn.module.ModuleManager;
 import com.evaan.frostburn.util.Setting;
+import imgui.ImGui;
+import imgui.ImGuiIO;
+import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 import imgui.type.ImBoolean;
@@ -15,6 +18,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -30,12 +35,20 @@ public class ImGuiScreen extends Screen {
     private HashMap<Module, ImBoolean> enabledMap = new HashMap<>();
     private HashMap<Setting, Object> settingsMap = new HashMap<>();
 
+    private HashMap<Module.Category, Boolean> spaghettiCode = new HashMap<>();
+
+    int x = 50;
+
     public ImGuiScreen() {
         super(new LiteralText("FrostBurn ClickGui"));
         windowPtr = MinecraftClient.getInstance().getWindow().getHandle();
-        imgui.ImGui.createContext();
+        ImGui.createContext();
         implGlfw.init(windowPtr, false);
         implGl3.init("#version 150");
+
+        for (Module.Category category : Module.Category.values()) {
+            spaghettiCode.put(category, false);
+        }
 
         for (Module module : ModuleManager.modules) {
             if (module.getName().equalsIgnoreCase("imgui") || module.getName().equalsIgnoreCase("clickgui")) continue;
@@ -66,47 +79,66 @@ public class ImGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        textRenderer.drawWithShadow(matrices, new LiteralText(Formatting.BLUE+"Frost"+Formatting.RED+"Burn"+Formatting.WHITE+" 1.0 by evaan"), 2, 2, 0xffffff);
-        textRenderer.drawWithShadow(matrices, new LiteralText("https://github.com/evaan/FrostBurn"), 2, 12, 0xffffff);
         implGlfw.newFrame();
-        imgui.ImGui.newFrame();
+        ImGui.newFrame();
+        ImGui.getIO().setConfigWindowsMoveFromTitleBarOnly(true);
+        ImGui.getStyle().setWindowMenuButtonPosition(-1);
+        ImGui.getStyle().setColor(ImGuiCol.TitleBgActive, 50, 50, 50, 255);
+        ImGui.getStyle().setColor(ImGuiCol.FrameBg, 50, 50, 50, 255);
+        ImGui.getStyle().setColor(ImGuiCol.FrameBgActive, 50, 50, 50, 255);
+        ImGui.getStyle().setColor(ImGuiCol.FrameBgHovered, 75, 75, 75, 255);
+        ImGui.getStyle().setColor(ImGuiCol.CheckMark, 255, 255, 255, 255);
+        ImGui.getStyle().setColor(ImGuiCol.SliderGrab, 255, 255, 255, 255);
+        ImGui.getStyle().setColor(ImGuiCol.SliderGrabActive, 255, 255, 255, 255);
+        ImGui.getStyle().setColor(ImGuiCol.Button, 50, 50,50,255);
+        ImGui.getStyle().setColor(ImGuiCol.ButtonHovered, 75, 75,75,255);
+        ImGui.getStyle().setColor(ImGuiCol.ButtonActive, 100, 100, 100,255);
+        ImGui.getStyle().setColor(ImGuiCol.Header, 50, 50, 50,255);
+        ImGui.getStyle().setColor(ImGuiCol.HeaderHovered, 75, 75, 75,255);
         for (Module.Category category : Module.Category.values()) {
-            imgui.ImGui.begin(category.getName());
+            ImGui.begin(category.getName(), ImGuiWindowFlags.NoResize);
+            if (!spaghettiCode.get(category)) {
+                ImGui.setWindowPos(x, 50);
+                x+=300;
+                ImGui.setWindowSize(250, ImGui.getWindowHeight());
+                spaghettiCode.put(category, true);
+            }
             for (Module module : ModuleManager.getModulesInCategory(category)) {
                 if (module.getName().equalsIgnoreCase("imgui") || module.getName().equalsIgnoreCase("clickgui"))
                     continue;
-                imgui.ImGui.checkbox(module.getName(), enabledMap.get(module));
+                ImGui.checkbox(module.getName(), enabledMap.get(module));
                 if (enabledMap.get(module).get() != module.isEnabled()) module.toggle();
-                if (!module.settings.isEmpty() && imgui.ImGui.collapsingHeader(module.getName() + " Settings")) {
-                    for (Setting setting : module.settings) {
-                        switch (setting.getType()) {
-                            case BOOLEAN:
-                                imgui.ImGui.checkbox(setting.getName(), (ImBoolean) settingsMap.get(setting));
-                                if ((boolean) setting.getValue() != ((ImBoolean) settingsMap.get(setting)).get())
-                                    setting.setValue(((ImBoolean) settingsMap.get(setting)).get());
-                                break;
-                            case INTEGER:
-                                imgui.ImGui.sliderInt(setting.getName(), (int[]) settingsMap.get(setting), (int) setting.getMin(), (int) setting.getMax());
-                                int[] javaStupid = (int[]) settingsMap.get(setting);
-                                if (javaStupid[0] != (int) setting.getValue()) setting.setValue(javaStupid[0]);
-                                break;
-                            case FLOAT:
-                                imgui.ImGui.sliderFloat(setting.getName(), (float[]) settingsMap.get(setting), (float) setting.getMin(),(float) setting.getMax());
-                                float[] javaStupid1 = (float[]) settingsMap.get(setting);
-                                if (javaStupid1[0] != (float) setting.getValue()) setting.setValue(javaStupid1[0]);
-                                break;
-                            case STRING:
-                                String[] javaStupid2 = (String[]) setting.getOptions().toArray(new String[setting.getOptions().size()]);
-                                imgui.ImGui.combo(setting.getName(), (ImInt) settingsMap.get(setting), javaStupid2);
-                                if (((ImInt) settingsMap.get(setting)).get() != setting.getOptions().indexOf(setting.getValue()))
-                                    setting.setValue(setting.getOptions().get(((ImInt) settingsMap.get(setting)).get()));
-                        }
+                for (Setting setting : module.settings) {
+                    ImGui.indent();
+                    switch (setting.getType()) {
+                        case BOOLEAN:
+                            ImGui.checkbox(setting.getName(), (ImBoolean) settingsMap.get(setting));
+                            if ((boolean) setting.getValue() != ((ImBoolean) settingsMap.get(setting)).get())
+                                setting.setValue(((ImBoolean) settingsMap.get(setting)).get());
+                            break;
+                        case INTEGER:
+                            ImGui.sliderInt(setting.getName(), (int[]) settingsMap.get(setting), (int) setting.getMin(), (int) setting.getMax());
+                            int[] javaStupid = (int[]) settingsMap.get(setting);
+                            if (javaStupid[0] != (int) setting.getValue()) setting.setValue(javaStupid[0]);
+                            break;
+                        case FLOAT:
+                            ImGui.sliderFloat(setting.getName(), (float[]) settingsMap.get(setting), (float) setting.getMin(),(float) setting.getMax());
+                            float[] javaStupid1 = (float[]) settingsMap.get(setting);
+                            if (javaStupid1[0] != (float) setting.getValue()) setting.setValue(javaStupid1[0]);
+                            break;
+                        case STRING:
+                            String[] javaStupid2 = (String[]) setting.getOptions().toArray(new String[setting.getOptions().size()]);
+                            ImGui.combo(setting.getName(), (ImInt) settingsMap.get(setting), javaStupid2);
+                            if (((ImInt) settingsMap.get(setting)).get() != setting.getOptions().indexOf(setting.getValue()))
+                                setting.setValue(setting.getOptions().get(((ImInt) settingsMap.get(setting)).get()));
                     }
+                    ImGui.unindent();
                 }
+
             }
-            imgui.ImGui.end();
+            ImGui.end();
         }
-        imgui.ImGui.render();
-        implGl3.renderDrawData(Objects.requireNonNull(imgui.ImGui.getDrawData()));
+        ImGui.render();
+        implGl3.renderDrawData(Objects.requireNonNull(ImGui.getDrawData()));
     }
 }
