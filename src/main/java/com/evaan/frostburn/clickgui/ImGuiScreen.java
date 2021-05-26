@@ -20,6 +20,7 @@ import net.minecraft.util.Formatting;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -55,7 +56,7 @@ public class ImGuiScreen extends Screen {
         }
 
         for (Module module : ModuleManager.modules) {
-            if (module.getName().equalsIgnoreCase("imgui") || module.getName().equalsIgnoreCase("clickgui")) continue;
+            if (module.getName().equalsIgnoreCase("imgui")) continue;
             showSettingsMap.put(module, false);
             enabledMap.put(module, new ImBoolean(module.isEnabled()));
             for (Setting setting : module.settings) {
@@ -118,7 +119,7 @@ public class ImGuiScreen extends Screen {
                 spaghettiCode.put(category, true);
             }
             for (Module module : ModuleManager.getModulesInCategory(category)) {
-                if (module.getName().equalsIgnoreCase("imgui") || module.getName().equalsIgnoreCase("clickgui"))
+                if (module.getName().equalsIgnoreCase("imgui"))
                     continue;
                 ImGui.checkbox(module.getName(), enabledMap.get(module));
                 if (ImGui.isItemHovered() && ImGui.isMouseClicked(1)) showSettingsMap.put(module, !showSettingsMap.get(module));
@@ -157,6 +158,7 @@ public class ImGuiScreen extends Screen {
             }
             ImGui.end();
         }
+
         ImGui.render();
         implGl3.renderDrawData(Objects.requireNonNull(ImGui.getDrawData()));
     }
