@@ -39,6 +39,7 @@ public class FrostBurn implements ModInitializer {
 		System.out.println("╚═╝░░░░░╚═╝░░╚═╝░╚════╝░╚═════╝░░░░╚═╝░░░╚═════╝░░╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝");
 		System.out.println("FrostBurn has been initialized!");
 		System.out.println("https://github.com/evaan/frostburn");
+		ConfigManager.load("default");
 
 		ClientLifecycleEvents.CLIENT_STOPPING.register((minecraftClient) -> {
 			ConfigManager.save("default");
