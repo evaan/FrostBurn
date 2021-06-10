@@ -46,8 +46,8 @@ public class KillAura extends Module {
 	    			if(entity.isLiving() && entity.isAttackable() && !(entity.getClass() == EndCrystalEntity.class)) {
 		                if (switchItem.getValue()) {
 		                    for (int i = 0; i < 9; i++) {
-		                        if (mc.player.inventory.getStack(i).getItem() instanceof SwordItem)
-		                            mc.player.inventory.selectedSlot = i;
+		                        if (mc.player.getInventory().getStack(i).getItem() instanceof SwordItem)
+		                            mc.player.getInventory().selectedSlot = i;
 		                    }
 		                }
 		                

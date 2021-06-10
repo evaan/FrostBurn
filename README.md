@@ -1,5 +1,5 @@
 # FrostBurn [![Build Status](https://www.travis-ci.com/evaan/FrostBurn.svg?branch=main)](https://www.travis-ci.com/evaan/FrostBurn) [![Discord Invite](https://img.shields.io/badge/Discord-XkpYgpfHtc-blue)](https://discord.gg/XkpYgpfHtc) ![Stars](https://img.shields.io/github/stars/evaan/FrostBurn) ![Forks](https://img.shields.io/github/forks/evaan/FrostBurn)
-A 1.16.5 utility mod oriented towards anarchy servers
+A 1.17 utility mod oriented towards anarchy servers
 ## Progress
   - [x] Command System
   - [x] Module System

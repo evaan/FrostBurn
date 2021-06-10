@@ -27,7 +27,7 @@ public class MixinPlayerEntity {
 
         // Negate fall damage
         if(ModuleManager.getModule("NoFall").isEnabled()) {
-            PlayerMoveC2SPacket packet = new PlayerMoveC2SPacket(true);
+            PlayerMoveC2SPacket packet = new PlayerMoveC2SPacket.OnGroundOnly(true);
             player.networkHandler.sendPacket(packet);
         }
     }

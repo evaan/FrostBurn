@@ -19,7 +19,7 @@ public class AutoTotem extends Module {
         Boolean found = false;
         if (!mc.player.getOffHandStack().getItem().equals(Items.TOTEM_OF_UNDYING)) {
             for (i = 9; i <= 36; i++) {
-                if (mc.player.inventory.getStack(i).getItem().equals(Items.TOTEM_OF_UNDYING)) {
+                if (mc.player.getInventory().getStack(i).getItem().equals(Items.TOTEM_OF_UNDYING)) {
                     found = true;
                     break;
                 }

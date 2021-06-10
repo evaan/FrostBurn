@@ -34,7 +34,7 @@ public class AutoAnchor extends Module {
     @Override
     public void onUpdate() {
         if (mc.world == null || mc.player == null) {disable(); return;}
-        for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem().equals(Items.RESPAWN_ANCHOR)) {anchorSlot = i;} else if (mc.player.inventory.getStack(i).getItem().equals(Items.GLOWSTONE)) {glowStoneSlot = i;}}
+        for (int i = 0; i < 9; i++) {if (mc.player.getInventory().getStack(i).getItem().equals(Items.RESPAWN_ANCHOR)) {anchorSlot = i;} else if (mc.player.getInventory().getStack(i).getItem().equals(Items.GLOWSTONE)) {glowStoneSlot = i;}}
         if (anchorSlot == -1 || glowStoneSlot == -1) {disable(); return;}
         if (ticks != delay.getValue()) {ticks++; return;}
         else ticks = 0;
@@ -47,11 +47,11 @@ public class AutoAnchor extends Module {
                 if (blockPos == null) continue;
                 mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, false));
                 if (mc.world.getBlockState(blockPos).getBlock().equals(Blocks.RESPAWN_ANCHOR)) {
-                    mc.player.inventory.selectedSlot = glowStoneSlot;
+                    mc.player.getInventory().selectedSlot = glowStoneSlot;
                     mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
                     mc.interactionManager.interactBlock(mc.player, mc.world, Hand.OFF_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
                 }
-                mc.player.inventory.selectedSlot = oldSlot;
+                mc.player.getInventory().selectedSlot = oldSlot;
                 break;
             }
         } catch (Exception ignored) {}

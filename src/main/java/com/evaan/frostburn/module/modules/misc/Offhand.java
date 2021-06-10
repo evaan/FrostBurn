@@ -60,7 +60,7 @@ public class Offhand extends Module {
         Boolean found = false;
         if (!(mc.player.getOffHandStack().getItem().equals(item))) {
             for (i = 9; i <= 36; i++) {
-                if (mc.player.inventory.getStack(i).getItem().equals(item)) {
+                if (mc.player.getInventory().getStack(i).getItem().equals(item)) {
                     found = true;
                     break;
                 }

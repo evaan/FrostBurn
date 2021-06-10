@@ -16,7 +16,7 @@ public class Velocity extends Module {
 
     @EventHandler
     private final Listener<PacketEvent.Receive> packetListener = new Listener<>(event -> {
-        if (event.getPacket() instanceof EntityVelocityUpdateS2CPacket && ((EntityVelocityUpdateS2CPacket) event.getPacket()).getId() == mc.player.getEntityId()) event.cancel();
+        if (event.getPacket() instanceof EntityVelocityUpdateS2CPacket && ((EntityVelocityUpdateS2CPacket) event.getPacket()).getId() == mc.player.getId()) event.cancel();
         else if (event.getPacket() instanceof ExplosionS2CPacket) event.cancel();
     });
 }

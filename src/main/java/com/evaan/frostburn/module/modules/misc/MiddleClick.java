@@ -48,15 +48,15 @@ public class MiddleClick extends Module {
                     }
                 }
             } else if (mode.getValue().equalsIgnoreCase("pearl")) {
-                int oldSlot = mc.player.inventory.selectedSlot;
+                int oldSlot = mc.player.getInventory().selectedSlot;
                 for (int i = 0; i < 9; i++) {
-                    if (mc.player.inventory.getStack(i).getItem().equals(Items.ENDER_PEARL)) {
-                        mc.player.inventory.selectedSlot = i;
+                    if (mc.player.getInventory().getStack(i).getItem().equals(Items.ENDER_PEARL)) {
+                        mc.player.getInventory().selectedSlot = i;
                         break;
                     }
                 }
                 if (mc.crosshairTarget.getType() != HitResult.Type.BLOCK && mc.crosshairTarget.getType() != HitResult.Type.ENTITY) mc.interactionManager.interactItem(mc.player, mc.world, Hand.MAIN_HAND);
-                mc.player.inventory.selectedSlot = oldSlot;
+                mc.player.getInventory().selectedSlot = oldSlot;
             }
         } else if (GLFW.glfwGetMouseButton(mc.getWindow().getHandle(), GLFW.GLFW_MOUSE_BUTTON_MIDDLE) == 0)
             pressed = false;

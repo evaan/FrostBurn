@@ -38,7 +38,7 @@ public class BedAura extends Module {
     @Override
     public void onUpdate() {
         if (mc.world == null || mc.player == null) {disable(); return;}
-        for (int i = 0; i < 9; i++) {if (mc.player.inventory.getStack(i).getItem() instanceof BedItem) {bedSlot = i;}}
+        for (int i = 0; i < 9; i++) {if (mc.player.getInventory().getStack(i).getItem() instanceof BedItem) {bedSlot = i;}}
         if (bedSlot == -1) {disable(); return;}
         if (ticks != delay.getValue()) {ticks++; return;}
         else ticks = 0;
@@ -55,20 +55,20 @@ public class BedAura extends Module {
         for (Pair<BlockPos, Direction> pair : positions) {
             BlockPos blockPos = pair.getLeft();
             Direction direction = pair.getRight();
-            oldSlot = mc.player.inventory.selectedSlot;
-            mc.player.inventory.selectedSlot = bedSlot;
+            oldSlot = mc.player.getInventory().selectedSlot;
+            mc.player.getInventory().selectedSlot = bedSlot;
             if (!(mc.world.getBlockState(blockPos)).getMaterial().isReplaceable()) continue;
             if (mc.world.getBlockState(blockPos.offset(direction)).getBlock() instanceof BedBlock) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos.offset(direction)), Direction.DOWN, blockPos.offset(direction), true));
             if (!(mc.world.getBlockState(blockPos).getBlock() instanceof BedBlock))  {
-                if (direction == Direction.NORTH) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookOnly(-180f, mc.player.pitch, true));
-                if (direction == Direction.EAST) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookOnly(-90f, mc.player.pitch, true));
-                if (direction == Direction.SOUTH) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookOnly(0f, mc.player.pitch, true));
-                if (direction == Direction.WEST) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookOnly(90f, mc.player.pitch, true));
+                if (direction == Direction.NORTH) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(-180f, mc.player.getPitch(), true));
+                if (direction == Direction.EAST) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(-90f, mc.player.getPitch(), true));
+                if (direction == Direction.SOUTH) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(0f, mc.player.getPitch(), true));
+                if (direction == Direction.WEST) mc.player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(90f, mc.player.getPitch(), true));
                 mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, false));
             }
             //todo maybe do it on another tick
             if (mc.world.getBlockState(blockPos).getBlock() instanceof BedBlock) mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(blockPos), Direction.DOWN, blockPos, true));
-            mc.player.inventory.selectedSlot = oldSlot;
+            mc.player.getInventory().selectedSlot = oldSlot;
             break;
         }
     }

@@ -17,11 +17,11 @@ public class Scaffold extends Module {
 
     @Override
     public void onUpdate() {
-    	int original_slot = mc.player.inventory.selectedSlot;
+    	int original_slot = mc.player.getInventory().selectedSlot;
     	
         for (int i = 0; i < 9; i++) {
-            if (mc.player.inventory.getStack(i).getItem() instanceof BlockItem)
-                mc.player.inventory.selectedSlot = i;
+            if (mc.player.getInventory().getStack(i).getItem() instanceof BlockItem)
+                mc.player.getInventory().selectedSlot = i;
         }
         if (mc.player == null || mc.world == null) {disable(); return;}
         BlockPos pos = mc.player.getBlockPos().down();
@@ -30,6 +30,6 @@ public class Scaffold extends Module {
             mc.player.swingHand(Hand.MAIN_HAND);
         }
         
-        mc.player.inventory.selectedSlot = original_slot;
+        mc.player.getInventory().selectedSlot = original_slot;
     }
 }

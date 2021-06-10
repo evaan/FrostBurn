@@ -14,10 +14,10 @@ public class YawLock extends Module {
     @Override
     public void onRender(MatrixStack matrices) {
         switch (mc.player.getHorizontalFacing()) {
-            case SOUTH: mc.player.yaw = 0; break;
-            case EAST: mc.player.yaw = 270; break;
-            case NORTH: mc.player.yaw = 180; break;
-            case WEST: mc.player.yaw = 90; break;
+            case SOUTH: mc.player.setYaw(0); break;
+            case EAST: mc.player.setYaw(270); break;
+            case NORTH: mc.player.setYaw(180); break;
+            case WEST: mc.player.setYaw(90); break;
         }
     }
 }

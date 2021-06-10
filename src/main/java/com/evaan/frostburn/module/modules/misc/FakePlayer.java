@@ -3,6 +3,7 @@ package com.evaan.frostburn.module.modules.misc;
 import com.evaan.frostburn.module.Module;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.OtherClientPlayerEntity;
+import net.minecraft.entity.Entity;
 
 import java.util.UUID;
 
@@ -24,6 +25,6 @@ public class FakePlayer extends Module {
 
     @Override
     public void onDisable() {
-        if (mc.world != null) mc.world.removeEntity(-100);
+        if (mc.world != null) mc.world.removeEntity(-100, Entity.RemovalReason.DISCARDED);
     }
 }

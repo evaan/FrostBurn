@@ -25,7 +25,7 @@ public class AutoStaircase extends Module {
     @Override
     public void onUpdate() {
         if (mc.player == null || mc.world == null) {disable(); return;}
-        if (!mc.player.isOnGround() || !(mc.player.inventory.getMainHandStack().getItem() instanceof BlockItem)) return;
+        if (!mc.player.isOnGround() || !(mc.player.getInventory().getMainHandStack().getItem() instanceof BlockItem)) return;
         BlockPos pos = mc.player.getBlockPos().offset(mc.player.getMovementDirection());
         switch (mc.player.getMovementDirection()) {
             case NORTH:

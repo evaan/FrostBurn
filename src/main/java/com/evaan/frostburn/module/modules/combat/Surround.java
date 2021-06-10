@@ -23,7 +23,7 @@ public class Surround extends Module {
     @Override
     public void onUpdate() {
         if (mc.player == null) return;
-        oldSlot = mc.player.inventory.selectedSlot;
+        oldSlot = mc.player.getInventory().selectedSlot;
         obiSlot = -1;
         if (!mc.player.isOnGround()) {disable(); return;}
         ArrayList<BlockPos> positions = new ArrayList<>();
@@ -32,7 +32,7 @@ public class Surround extends Module {
         positions.add(mc.player.getBlockPos().south());
         positions.add(mc.player.getBlockPos().west());
         for (int i = 0; i < 9; i++) {
-            if (mc.player.inventory.getStack(i).getItem().equals(Items.OBSIDIAN)) {
+            if (mc.player.getInventory().getStack(i).getItem().equals(Items.OBSIDIAN)) {
                 obiSlot = i;
                 break;
             }
@@ -42,9 +42,9 @@ public class Surround extends Module {
             if (!mc.world.getBlockState(pos).getMaterial().isReplaceable()) continue;
             for (Direction direction : Direction.values()) {
                 if (!mc.world.getBlockState(pos.offset(direction)).getMaterial().isReplaceable()) {
-                    mc.player.inventory.selectedSlot = obiSlot;
+                    mc.player.getInventory().selectedSlot = obiSlot;
                     mc.interactionManager.interactBlock(mc.player, mc.world, Hand.MAIN_HAND, new BlockHitResult(Vec3d.of(pos), direction, pos, false));
-                    mc.player.inventory.selectedSlot = oldSlot;
+                    mc.player.getInventory().selectedSlot = oldSlot;
                 }
             }
         }
