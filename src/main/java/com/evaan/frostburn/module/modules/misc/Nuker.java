@@ -79,16 +79,19 @@ public class Nuker extends Module {
             }
         }
 
-        if (faceBlock.getValue()) {
-            mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, Vec3d.of(blocks.get(0)));
-        }
 
-        Iterator<BlockPos> blocksIter = blocks.iterator();
-        for (int j = 0; j < blocks.size(); j++) {
-            if (j < blocksToMine.getValue() && blocksIter.hasNext()) {
-                breakBlock(blocksIter.next());
-            } else {
-                break;
+        if (blocks.size() > 0) {
+            if (faceBlock.getValue()) {
+                mc.player.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, Vec3d.of(blocks.get(0)));
+            }
+
+            Iterator<BlockPos> blocksIter = blocks.iterator();
+            for (int j = 0; j < blocks.size(); j++) {
+                if (j < blocksToMine.getValue() && blocksIter.hasNext()) {
+                    breakBlock(blocksIter.next());
+                } else {
+                    break;
+                }
             }
         }
 
