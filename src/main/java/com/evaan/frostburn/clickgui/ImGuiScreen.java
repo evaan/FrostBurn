@@ -115,7 +115,7 @@ public class ImGuiScreen extends Screen {
             if (!spaghettiCode.get(category)) {
                 ImGui.setWindowPos(x, 50);
                 x+=300;
-                ImGui.setWindowSize(250, ImGui.getWindowHeight());
+                ImGui.setWindowSize(250, 450);
                 spaghettiCode.put(category, true);
             }
             for (Module module : ModuleManager.getModulesInCategory(category)) {
