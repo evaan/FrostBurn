@@ -2,10 +2,7 @@ package com.evaan.frostburn.module;
 
 import com.evaan.frostburn.module.modules.combat.*;
 import com.evaan.frostburn.module.modules.misc.*;
-import com.evaan.frostburn.module.modules.movement.Jesus;
-import com.evaan.frostburn.module.modules.movement.NoFall;
-import com.evaan.frostburn.module.modules.movement.SafeWalk;
-import com.evaan.frostburn.module.modules.movement.Sprint;
+import com.evaan.frostburn.module.modules.movement.*;
 import com.evaan.frostburn.module.modules.render.*;
 
 import java.util.ArrayList;
@@ -50,6 +47,7 @@ public class ModuleManager {
         modules.add(new CleanChat());
         modules.add(new MiddleClick());
         modules.add(new ImGuiMod());
+        modules.add(new Fly());
 
         modules.sort(Comparator.comparing(object -> object.name)); //sort the modules alphabetically
     }
